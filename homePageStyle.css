@@ -1,0 +1,218 @@
+html {
+    height: 100%;
+    width: 100%;
+  }
+  
+  body {
+    background-color: #FCF9EA;
+    color: #333333;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    height: 100%;
+    overflow: hidden;
+    padding:0;
+  }
+
+  header {
+    display: flex;
+    justify-content:space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #F8A978;
+    color: #FCF9EA;
+  }
+  
+  .logo-container img {
+    height: 100px;
+    vertical-align: middle;
+  }
+  
+  .info-button-container {
+    position: relative;
+    display: flex;
+  }
+  
+  .info-popup {
+    display: none;
+    position: absolute;
+    top: 60px;
+    right: 0;
+    width: 300px;
+    padding: 20px;
+    background-color: #FCF9EA;
+    border: 1px solid #F8A978;
+    border-radius: 5px;
+    z-index: 1;
+  }
+  
+  .info-popup p {
+    margin-bottom: 10px;
+  }
+  
+  .info-button {
+    font-size: 16px;
+    font-weight: bold;
+    color: #FCF9EA;
+    background-color: #BADFDB;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    margin-right: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .info-button:hover {
+    background-color: #FFC5A1;
+  }
+  
+  .info-button-container:hover .info-popup {
+    display: block;
+  }
+  
+  .close-button {
+    font-size: 16px;
+    font-weight: bold;
+    color: #FCF9EA;
+    background-color: #BADFDB;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    margin-top: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .close-button:hover {
+    background-color: #FFC5A1;
+  }
+  
+  .dropdown {
+    position: relative;
+  }
+  
+  .dropbtn {
+    font-size: 16px;
+    font-weight: bold;
+    color: #FCF9EA;
+    background-color: #BADFDB;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .dropbtn:hover {
+    background-color: #FFC5A1;
+  }
+  
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    top: 60px;
+    right: 0;
+    background-color: #FCF9EA;
+    min-width: 160px;
+    padding: 10px;
+    z-index: 1;
+    border: 1px solid #F8A978;
+    border-radius: 5px;
+  }
+  
+  .dropdown-content a {
+    color: #333333;
+    font-size: 16px;
+    display: block;
+    padding: 10px 20px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+  }
+  
+  .dropdown-content a:hover {
+    background-color: #F8A978;
+    color: #FCF9EA;
+  }
+  
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
+  
+  .dropdown:hover .dropbtn {
+    background-color: #FFC5A1;
+  }
+  
+  .main-container {
+    display: flex;
+    height: 60%;
+    margin-top: 5%;
+  }
+  
+  .left-container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .image-container {
+    width: 100%;
+    height: 100%;
+    background-color: #EEEEEE;
+  }
+  
+  .right-container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .image-button-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 100px;
+  }
+  
+  .add-button {
+    font-size: 48px;
+    width: 100%;
+    height: 100%;
+    background-color: #BADFDB;
+    color: #FCF9EA;
+    border: none;
+    border-radius: 50%;
+    transition: background-color 0.3s ease;
+  }
+  
+  .add-button:hover {
+    background-color: #FFC5A1;
+    color: #333333;
+    cursor: pointer;
+  }
+  
+  .image-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    background-color: #FCF9EA;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .image-button:hover {
+    background-color: #BADFDB;
+    cursor: pointer;
+  }
+  
+  .image-button img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+  }
+  
