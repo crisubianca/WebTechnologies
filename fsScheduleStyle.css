@@ -36,8 +36,10 @@ html {
   }
   
   .menu-buttons-container {
-    position: relative;
-    display: flex;
+    position:absolute;
+    display:block;
+    top: 40px;
+    right: 105px;
   }
   
   .button {
