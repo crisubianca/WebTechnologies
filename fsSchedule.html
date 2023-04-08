@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Home Page</title>
+    <link rel="stylesheet" href="fsScheduleStyle.css">
+  </head>
+  <body>
+    <header>
+      <div class="logo-container">
+        <a href="homePage.html"><img src="logo.png" alt="Logo"></a>
+      </div>
+      <div class="menu-buttons-container">
+        <a href="fsSchedule.html" class="button">Feeding and Sleep Schedule</a>
+        <a href="fsSchedule.html" class="button">Medical History</a>
+        <a href="fsSchedule.html" class="button">Media resources</a>
+      </div>
+      <div class="dropdown">
+        <button class="dropbtn">Menu</button>
+        <div class="dropdown-content">
+          <a href="settings.html">Settings</a>
+          <a href="startPage.html">Logout</a>
+        </div>
+      </div>
+    </header>
+    <form>
+        <label for="age">Age:</label>
+        <input type="number" id="age" name="age" required>
+        
+        <label for="hours">Hours:</label>
+        <input type="number" id="hours" name="hours" min="0" max="23" required>
+        
+        <label for="minutes">Minutes:</label>
+        <input type="number" id="minutes" name="minutes" min="0" max="59" required>
+        
+        <label for="text">Text:</label>
+        <input type="text" id="text" name="text" required>
+        
+        <button type="button" onclick="addRow()">Add</button>
+      </form>
+      
+      <table id="myTable">
+        <thead>
+          <tr>
+            <th>Age</th>
+            <th>Time</th>
+            <th>Text</th>
+          </tr>
+        </thead>
+        <tbody>
+        </tbody>
+      </table>
+    <script>
+        function addRow() {
+            // Get user input
+            const age = document.getElementById("age").value;
+            const hours = document.getElementById("hours").value;
+            const minutes = document.getElementById("minutes").value;
+            const text = document.getElementById("text").value;
+
+            // Create new row
+            const newRow = document.createElement("tr");
+            
+            // Create cells for the row
+            const ageCell = document.createElement("td");
+            const timeCell = document.createElement("td");
+            const textCell = document.createElement("td");
+            const deleteCell = document.createElement("td");
+
+            // Set the text for the cells
+            ageCell.innerText = age;
+            timeCell.innerText = `${hours}:${minutes}`;
+            textCell.innerText = text;
+            deleteCell.innerHTML = '<button type="button" onclick="deleteRow(this)">Delete</button>';
+
+            // Add the cells to the row
+            newRow.appendChild(ageCell);
+            newRow.appendChild(timeCell);
+            newRow.appendChild(textCell);
+            newRow.appendChild(deleteCell);
+
+            // Add the row to the table
+            const tableBody = document.querySelector("#myTable tbody");
+            tableBody.appendChild(newRow);
+        }
+
+        function deleteRow(button) {
+            // Get the row to be deleted
+            const row = button.parentNode.parentNode;
+            
+            // Remove the row from the table
+            const tableBody = document.querySelector("#myTable tbody");
+            tableBody.removeChild(row);
+        }
+
+    </script>
+  </body>
+</html>
