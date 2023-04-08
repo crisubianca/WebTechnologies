@@ -23,82 +23,128 @@
         </div>
       </div>
     </header>
+    <h1>
+        KID 1
+    </h1>
+    <h2>
+        Insert informations in the below form!
+    </h2>
+
     <form>
-        <!-- <label for="day">Date:</label>
-        <input type="number" id="day" name="day" required min="1" max="31"> -->
-        
-        <label for="hours">Hours:</label>
-        <input type="number" id="hours" name="hours" required min="0" max="23">
-        
-        <label for="minutes">Minutes:</label>
-        <input type="number" id="minutes" name="minutes" required min="0" max="59">
-        
-        <label for="text">Text:</label>
-        <input type="text" id="text" name="text" required>
-        
-        <button type="button" onclick="addRow()">Add</button>
-      </form>      
+        <label for="time">Time:</label>
+        <input type="time" id="time" name="time"><br><br>
+      
+        <label for="activity">Activity:</label>
+        <input type="text" id="activity" name="activity"><br><br>
+      
+        <label for="info">Information:</label>
+        <input type="text" id="info" name="info"><br><br>
+      
+        <input type="button" value="Add" onclick="addRow()">
+      </form>
       
       <table id="myTable">
         <thead>
           <tr>
-            <th>Date</th>
             <th>Time</th>
-            <th>Informations</th>
+            <th>Activity</th>
+            <th>Information</th>
+            <th>Date</th>
           </tr>
         </thead>
         <tbody>
         </tbody>
       </table>
+      
+
+      <!-- <br><br>
+
+      <button id="historyButton" onclick="showHistory()">History</button>
+  
+      <br><br>
+  
+      <table id="historyTable" >
+        <thead>
+          <tr>
+            <th>Day</th>
+            <th>Time</th>
+            <th>Information</th>
+          </tr>
+        </thead>
+        <tbody> -->
+          <!-- History rows will be dynamically generated here -->
+        <!-- </tbody>
+      </table> -->
+
     <script>
         function addRow() {
-            // Get user input
-            // const dayInput = document.getElementById("day").value;
-            const hours = document.getElementById("hours").value;
-            const minutes = document.getElementById("minutes").value;
-            const text = document.getElementById("text").value;
+            // Get values from form inputs
+            var time = document.getElementById("time").value;
+            var activity = document.getElementById("activity").value;
+            var info = document.getElementById("info").value;
 
-            // Format the day
-            const day = new Date().toLocaleDateString('en-GB', {
-                day: '2-digit',
-                month: '2-digit',
-                year: 'numeric'
-            }).split('/').join('-').replace(',', '');
+            // Get current date in dd:mm:yyyy format
+            var today = new Date();
+            var dd = today.getDate();
+            var mm = today.getMonth()+1;
+            var yyyy = today.getFullYear();
+            if(dd<10) dd='0'+dd;
+            if(mm<10) mm='0'+mm;
+            var currentDate = dd+':'+mm+':'+yyyy;
 
-            // Create new row
-            const newRow = document.createElement("tr");
-            
-            // Create cells for the row
-            const dayCell = document.createElement("td");
-            const timeCell = document.createElement("td");
-            const textCell = document.createElement("td");
-            const deleteCell = document.createElement("td");
+            // Insert new row into table
+            var table = document.getElementById("myTable").getElementsByTagName("tbody")[0];
+            var newRow = table.insertRow();
 
-            // Set the text for the cells
-            dayCell.innerText = day;
-            timeCell.innerText = `${hours}:${minutes}`;
-            textCell.innerText = text;
-            deleteCell.innerHTML = '<button type="button" onclick="deleteRow(this)">Delete</button>';
+            // Insert cells with form input values and current date
+            var cell1 = newRow.insertCell(0);
+            var cell2 = newRow.insertCell(1);
+            var cell3 = newRow.insertCell(2);
+            var cell4 = newRow.insertCell(3);
+            var cell5 = newRow.insertCell(4);
+            cell1.innerHTML = time;
+            cell2.innerHTML = activity;
+            cell3.innerHTML = info;
+            cell4.innerHTML = currentDate;
+            cell5.innerHTML = '<button onclick="deleteRow(this)">Delete</button>';
 
-            // Add the cells to the row
-            newRow.appendChild(dayCell);
-            newRow.appendChild(timeCell);
-            newRow.appendChild(textCell);
-            newRow.appendChild(deleteCell);
-
-            // Add the row to the table
-            const tableBody = document.querySelector("#myTable tbody");
-            tableBody.appendChild(newRow);
+            // Reset form inputs
+            document.getElementById("time").value = "";
+            document.getElementById("activity").value = "";
+            document.getElementById("info").value = "";
         }
 
-        function deleteRow(button) {
+        function deleteRow(btn) {
             // Get the row to be deleted
-            const row = button.parentNode.parentNode;
-            
+            var row = btn.parentNode.parentNode;
+
             // Remove the row from the table
-            const tableBody = document.querySelector("#myTable tbody");
-            tableBody.removeChild(row);
+            row.parentNode.removeChild(row);
         }
+
+
+        // function deleteRow(button) {
+        //     // Get the row to be deleted
+        //     const row = button.parentNode.parentNode;
+            
+        //     // Remove the row from the table
+        //     const tableBody = document.querySelector("#myTable tbody");
+        //     tableBody.removeChild(row);
+
+        //     // Remove the data from the array
+        //     const rowIndex = row.rowIndex - 1;
+        //     tableData.splice(rowIndex, 1);
+            
+        //     // Remove the data from the history table
+        //     const historyTable = document.querySelector("#historyTable tbody");
+        //     const historyRow = historyTable.childNodes[rowIndex];
+        //     historyTable.removeChild(historyRow);
+
+        // }
+
+        // function showHistory() {
+        //     window.location.href = "history.html";
+        // }
 
     </script>
   </body>
