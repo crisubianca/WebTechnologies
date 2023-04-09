@@ -24,8 +24,30 @@
             </div>
           </header>
         <div class ="container">
-            <p> This is {kid's name} medical history</p>
+            <h1> This is {kid's name} medical history</h1>
 
+            <form>
+              <input type="date" id="date" name="date" placeholder="Date">
+              <input type="text" id="procedure" name="procedure" placeholder="Medical Procedure">
+              <input type="text" id="note" name="note" placeholder="Additional Information">
+
+              <input type="button" class="form-button" value="Add" onclick="addRow()">
+            </form>
+            <table id="medicalHistoryTable">
+              <thead>
+                <tr>
+                  <th>Date</th>
+                  <th>Medical Procedure</th>
+                  <th>Note</th>
+                </tr>
+              </thead>
+              <tbody>
+              </tbody>
+            </table>
         </div>
+
+        <script src="medicalHistory.js">
+
+        </script>
     </body>
 </html>
