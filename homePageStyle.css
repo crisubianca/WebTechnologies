@@ -172,6 +172,11 @@ html {
     height: 100%;
     background-color: #EEEEEE;
   }
+
+  .image-container img {
+  width: 540px;
+  height: 500px;
+}
   
   .right-container {
     flex: 1;
