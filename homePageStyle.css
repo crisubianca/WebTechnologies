@@ -174,8 +174,8 @@ html {
   }
 
   .image-container img {
-  width: 540px;
-  height: 500px;
+    width: 540px;
+    height: 500px;
 }
   
   .right-container {
@@ -190,6 +190,11 @@ html {
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(2, 1fr);
     gap: 100px;
+  }
+
+  .image-button-container img {
+    width: 100px;
+    height: 50px;
   }
   
   .add-button {
