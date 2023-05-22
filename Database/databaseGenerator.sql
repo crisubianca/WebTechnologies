@@ -1,4 +1,4 @@
-CREATE DATABASE BaInDatabase;
+USE BeInDatabase;
 
 CREATE TABLE users(
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -39,7 +39,7 @@ CREATE TABLE feeding_schedule(
     quantity FLOAT(2) NOT NULL,
     notes TEXT,
     PRIMARY KEY (id),
-    FOREIGN KEY (child_id) REFERENCES children(id));
+    FOREIGN KEY (child_id) REFERENCES children(child_id));
 
 CREATE TABLE sleeping_schedule(
     id INT(11) NOT NULL AUTO_INCREMENT,
@@ -49,7 +49,7 @@ CREATE TABLE sleeping_schedule(
     duration FLOAT(2) NOT NULL,
     notes TEXT,
     PRIMARY KEY (id),
-    FOREIGN KEY (child_id) REFERENCES children(id));
+    FOREIGN KEY (child_id) REFERENCES children(child_id));
 
 CREATE TABLE medical_history(
     id INT(11) NOT NULL AUTO_INCREMENT,
@@ -60,4 +60,4 @@ CREATE TABLE medical_history(
     treatment TEXT NOT NULL,
     notes TEXT,
     PRIMARY KEY (id),
-    FOREIGN KEY (child_id) REFERENCES children(id));
+    FOREIGN KEY (child_id) REFERENCES children(child_id));
