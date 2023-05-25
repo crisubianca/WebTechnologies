@@ -22,65 +22,44 @@
                 <a href="index.html">Logout</a>
               </div>
             </div>
-          </header>
+        </header>
+        <h1>
+            {KID1's Name}
+        </h1>
         <div class ="container">
             <!-- <h1> This is {kid's name} medical history</h1> -->
 
             <form>
-              <fieldset>
-                <legend>Child's Personal Information:</legend>
-                <label for="fullname">Name:</label>
-                <input type="text" id="name" name="name"><br><br>
+              <legend>Child's Personal Information</legend>
+              <input type="text" id="name" name="name" placeholder="Name">
+              <input type="text" id="surname" name="surname" placeholder="Surname">
+              <input type="number" id="age" name="age" placeholder="Age">
+              <input type="date" id="dob" name="dob" placeholder="Date of Birth">
+            </form>
 
-                <label for="fullname">Surname:</label>
-                <input type="text" id="surname" name="surname"><br><br>
-          
-                <label for="age">Age:</label>
-                <input type="number" id="age" name="age"><br><br>
-          
-                <label for="dob">Date of Birth:</label>
-                <input type="date" id="dob" name="dob"><br><br>
-          
-                <label for="gender">Gender:</label>
-                <select id="gender" name="gender">
-                  <option value="male">Male</option>
-                  <option value="female">Female</option>
-                  <option value="other">Other</option>
-                </select>
-              </fieldset><br><br>
-          
-              <fieldset>
-                <legend>Doctor's Information:</legend>
-                <label for="doctorname">Name:</label>
-                <input type="text" id="doctorname" name="doctorname"><br><br>
+            <form>
+              <label for="gender">Gender</label>
+              <select id="gender" name="gender">
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+              </select>
+            </form>
 
-                <label for="fullname">Surname:</label>
-                <input type="text" id="doctorsurname" name="doctorsurname"><br><br>
-          
-                <label for="doctorphone">Phone Number:</label>
-                <input type="tel" id="doctorphone" name="doctorphone"><br><br>
-          
-                <label for="doctorhospital">Hospital:</label>
-                <input type="text" id="doctorhospital" name="doctorhospital"><br><br>
-              </fieldset><br><br>
-          
-              <fieldset>
-                <legend>Medical History:</legend>
-                <label for="medication">Receiving treatment from doctor:</label>
-                <input type="text" id="treatment" name="treatment"><br><br>
+            <form>
+              <legend>Doctor's Information</legend>
+              <input type="text" id="doctorname" name="doctorname" placeholder="Name">
+              <input type="text" id="doctorsurname" name="doctorsurname" placeholder="Surname">
+              <input type="tel" id="doctorphone" name="doctorphone" placeholder="Phone Number">
+              <input type="text" id="doctorhospital" name="doctorhospital" placeholder="Insititution/Hospital">
+            </form>
 
-                <label for="medication">Current Medication:</label>
-                <input type="text" id="medication" name="medication"><br><br>
-          
-                <label for="illness">Illness:</label>
-                <input type="text" id="illness" name="illness"><br><br>
-          
-                <label for="allergies">Allergies:</label>
-                <input type="text" id="allergies" name="allergies"><br><br>
-          
-                <label for="heartconditions">Heart Conditions:</label>
-                <input type="text" id="heartconditions" name="heartconditions">
-              </fieldset><br><br>
+            <form>
+              <legend>Medical History</legend>
+              <input type="text" id="treatment" name="treatment" placeholder="Receiving Treatment Currently">
+              <input type="text" id="medication" name="medication" placeholder="Current Medication">
+              <input type="text" id="illness" name="illness" placeholder="Illness">
+              <input type="text" id="allergies" name="allergies" placeholder="Allergies">
+              <input type="text" id="heartconditions" name="heartconditions" placeholder="Heart Conditions">
           
               <input type="button" class="form-button" value="Submit" onclick="addDataToTable()">
             </form>
