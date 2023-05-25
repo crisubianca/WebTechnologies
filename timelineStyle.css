@@ -215,9 +215,14 @@ html {
 
 .container .content {
   padding: 30px 90px 30px 30px;
-  background: #F6D155;
+  background: #BADFDB;
   position: relative;
   border-radius: 0 500px 500px 0;
+  
+}
+
+.container .content:hover {
+  background-color: #ffc5a1;
   
 }
 
