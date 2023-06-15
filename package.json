@@ -1,0 +1,28 @@
+{
+  "name": "webtechnologies",
+  "version": "1.0.0",
+  "description": "Year 2, Sem 2",
+  "main": "medicalHistory.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/crisubianca/WebTechnologies.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/crisubianca/WebTechnologies/issues"
+  },
+  "homepage": "https://github.com/crisubianca/WebTechnologies#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.22"
+  },
+  "dependencies": {
+    "mysql": "^2.18.1",
+    "mysql2": "^3.3.3"
+  }
+}
