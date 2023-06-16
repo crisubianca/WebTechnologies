@@ -87,7 +87,7 @@ html {
     border: none;
     border-radius: 5px;
     padding: 10px 20px;
-    margin-right: 10px;
+    margin-right: 50px;
     cursor: pointer;
     transition: background-color 0.3s ease;
   }
@@ -176,8 +176,52 @@ html {
   .dropdown:hover .dropbtn {
     background-color: #FFC5A1;
   }
+
+  .container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: center;
+}
+
+.profile-card {
+  display: inline-block;
+  margin: 10px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.profile-card img {
+  width: 150px;
+  height: 90px;
+  border-radius: 50%;
+}
+
+/* #addProfileButton {
+  margin-top: 20px;
+} */
+
+#addProfileButton {
+  font-size: 16px;
+  font-weight: bold;
+  color: #FCF9EA;
+  background-color: #BADFDB;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  margin-top: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+
+#addProfileButton:hover {
+  background-color: #FFC5A1;
+}
   
-  .slideshow-container {
+  /* .slideshow-container {
     padding: 0;
     margin: 0;
     display: block;
@@ -214,7 +258,7 @@ html {
   
   .form-button {
     margin-top: 20px;
-  }
+  } */
 
   /* .main-container {
     display: flex;
