@@ -35,8 +35,30 @@ const server = http.createServer((req, res) => {
       res.end(data);
     });
   } 
+  else if (method === 'GET' && parsedUrl.pathname.endsWith('.js')) {
+    fs.readFile(parsedUrl.pathname.substring(1), (err, data) => {
+      if (err) {
+        res.writeHead(500, { 'Content-Type': 'application/json' });
+        res.end('Internal Server Error');
+        return;
+      }
+      res.writeHead(200, { 'Content-Type': 'text/css' });
+      res.end(data);
+    });
+  }
+  else if (method === 'GET' && parsedUrl.pathname.endsWith('.png')) {
+    fs.readFile(parsedUrl.pathname.substring(1), (err, data) => {
+      if (err) {
+        res.writeHead(500, { 'Content-Type': 'application/json' });
+        res.end('Internal Server Error');
+        return;
+      }
+      res.writeHead(200, { 'Content-Type': 'image/png' });
+      res.end(data);
+    });
+  }
   else if (method === 'GET' && parsedUrl.pathname === '/') {
-    fs.readFile('index.html', (err, data) => {
+    fs.readFile('./Views/index.html', (err, data) => {
       if (err) {
         res.writeHead(500, { 'Content-Type': 'application/json' });
         res.end('Internal Server Error');
@@ -45,9 +67,9 @@ const server = http.createServer((req, res) => {
       res.writeHead(200, { 'Content-Type': 'text/html' });
       res.end(data);
     });
-  } 
+  }  
   else if (method === 'GET' && parsedUrl.pathname === '/login') {
-    fs.readFile('login.html', (err, data) => {
+    fs.readFile('./Views/login.html', (err, data) => {
       if (err) {
         res.writeHead(500, { 'Content-Type': 'application/json' });
         res.end('Internal Server Error');
@@ -58,7 +80,7 @@ const server = http.createServer((req, res) => {
     });
   } 
   else if (method === 'GET' && parsedUrl.pathname === '/signup') {
-    fs.readFile('signup.html', (err, data) => {
+    fs.readFile('./Views/signup.html', (err, data) => {
       if (err) {
         res.writeHead(500, { 'Content-Type': 'application/json' });
         res.end('Internal Server Error');
@@ -82,7 +104,7 @@ const server = http.createServer((req, res) => {
       // res.end();
 
       res.writeHead(200, { 'Content-Type': 'text/html' });
-      fs.readFile('./homePage.html', null, function (error, data) {
+      fs.readFile('./Views/homePage.html', null, function (error, data) {
         if (error) {
             res.writeHead(404);
             res.write('Whoops! File not found!');
@@ -112,7 +134,7 @@ const server = http.createServer((req, res) => {
       // res.writeHead(302, { 'Location': '/homePage.html' });
       // res.end();
         res.writeHead(200, { 'Content-Type': 'text/html' });
-        fs.readFile('./homePage.html', null, function (error, data) {
+        fs.readFile('./Views/homePage.html', null, function (error, data) {
           if (error) {
               res.writeHead(404);
               res.write('Whoops! File not found!');
@@ -123,7 +145,7 @@ const server = http.createServer((req, res) => {
         });
       } else {
         // Redirect to login page
-        fs.readFile('./login.html', (err, data) => {
+        fs.readFile('./Views/login.html', (err, data) => {
           if (err) {
             res.writeHead(500, { 'Content-Type': 'application/json' });
             res.end('Internal Server Error');
