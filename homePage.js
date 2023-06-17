@@ -1,8 +1,6 @@
 // Sample profile data
-const profiles = [
-  { id: 1, name: '{Kids Name}', image: 'logo.png' },
-  { id: 2, name: '{Kids Name}', image: 'logo.png' },
-  { id: 3, name: '{Kids Name}', image: 'logo.png' }
+let profiles = [
+  { id: 1, name: '{Kids Name}', image: 'logo.png' }
 ];
 
 // Function to generate profile cards
@@ -16,6 +14,8 @@ function generateProfileCards() {
     profileCard.innerHTML = `
       <img src="${profile.image}" alt="${profile.name}">
       <h3>${profile.name}</h3>
+      <button class="delete-profile-button" data-profile-id="${profile.id}">Delete</button>
+      <button class="upload-image-button" data-profile-id="${profile.id}">Upload Image</button>
     `;
 
     // Add event listener for profile card click
@@ -23,34 +23,113 @@ function generateProfileCards() {
       redirectToProfilePage(profile.id);
     });
 
+    // Add event listener for delete profile button
+    const deleteButton = profileCard.querySelector('.delete-profile-button');
+    deleteButton.addEventListener('click', (event) => {
+      event.stopPropagation();
+      const profileId = parseInt(deleteButton.dataset.profileId);
+      deleteProfile(profileId);
+    });
+
+    // Add event listener for upload image button
+    const uploadButton = profileCard.querySelector('.upload-image-button');
+    uploadButton.addEventListener('click', (event) => {
+      event.stopPropagation();
+      const profileId = parseInt(uploadButton.dataset.profileId);
+      handleImageUpload(profileId);
+    });
+
     profileList.appendChild(profileCard);
   });
 }
 
-// Function to redirect to profile-specific HTML page
-function redirectToProfilePage(profileId) {
-  // Replace 'profile.html' with your actual profile-specific HTML page
-  const profilePageUrl = `fsSchedule.html`;
-  window.location.href = profilePageUrl;
+// Function to delete a profile
+function deleteProfile(profileId) {
+  profiles = profiles.filter((profile) => profile.id !== profileId);
+  generateProfileCards();
 }
 
-// Event listener for 'Add Profile' button
-const addProfileButton = document.getElementById('addProfileButton');
-addProfileButton.addEventListener('click', () => {
-  const newProfileName = prompt('Enter the name of the new profile:');
-  if (newProfileName) {
-    const newProfile = {
-      id: profiles.length + 1,
-      name: newProfileName,
-      image: 'logo.png'
+// Function to handle image upload
+function handleImageUpload(profileId) {
+  const input = document.getElementById('imageUploadInput');
+  input.click();
+
+  input.addEventListener('change', (event) => {
+    const file = event.target.files[0];
+    const reader = new FileReader();
+
+    reader.onload = (e) => {
+      const imageSrc = e.target.result;
+      updateProfileImage(profileId, imageSrc);
     };
-    profiles.push(newProfile);
+
+    reader.readAsDataURL(file);
+  });
+}
+
+// Function to update profile image
+function updateProfileImage(profileId, imageSrc) {
+  const profile = profiles.find((profile) => profile.id === profileId);
+  if (profile) {
+    profile.image = imageSrc;
     generateProfileCards();
   }
+}
+
+// Function to redirect to profile-specific HTML page
+function redirectToProfilePage(profileId) {
+  // Find the profile by ID
+  const profile = profiles.find((profile) => profile.id === profileId);
+  if (profile) {
+    // Replace 'fsSchedule.html' with your actual profile-specific HTML page
+    const profilePageUrl = `fsSchedule.html?name=${encodeURIComponent(profile.name)}`;
+    window.location.href = profilePageUrl;
+  }
+}
+
+// Function to handle add profile button click
+document.getElementById('addProfileButton').addEventListener('click', () => {
+  const profileName = prompt('Enter profile name:');
+  const profileId = profiles.length + 1;
+  const newProfile = { id: profileId, name: profileName, image: '' };
+  profiles.push(newProfile);
+  generateProfileCards();
 });
 
 // Generate profile cards on page load
 generateProfileCards();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
