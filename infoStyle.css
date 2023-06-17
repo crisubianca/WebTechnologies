@@ -1,15 +1,28 @@
-body {
-    font-family: Arial, sans-serif;
+a {
+  text-decoration: none;
+}
+
+  body {
     background-color: #FCF9EA;
-    margin: 0;
+    color: #333333;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    height: 100%;
+    overflow: hidden;
+    padding:0;
+    
   }
-  
+
   header {
+    display: flex;
+    justify-content:space-between;
+    align-items: center;
     background-color:  #BADFDB;
     color:  #FCF9EA;
     padding: 20px;
   }
-
+  
   .box-shadow {
     box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, .10);
   }
@@ -19,29 +32,28 @@ body {
     font-size: 32px;
   }
   
-  nav {
-    margin-top: 10px;
+  .info-button-container {
+    position: absolute;
+    display: block;
+    top: 36px;
+    right: 105px;
+  }
+
+  .button {
+    font-size: 20px;
+    font-weight: bold;
+    color: #FCF9EA;
+    background-color: #BADFDB;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
   }
   
-  nav ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: space-between;
-  }
   
-  nav li {
-    margin-right: 10px;
-  }
-  
-  nav a {
-    color:  #FCF9EA;
-    text-decoration: none;
-  }
-  
-  nav a:hover {
-    text-decoration: underline;
+  .button:hover {
+    background-color: #FFC5A1;
   }
   
   main {
