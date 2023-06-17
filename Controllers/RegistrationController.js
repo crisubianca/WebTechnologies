@@ -1,14 +1,19 @@
-class RegistrationController {
-    static register = function(data){
 
+class RegistrationController {
+    static register = async function(data){
+
+      const bcrypt = require('bcrypt');
       const { username, email, password } = data;
       console.log('Username:', username);
       console.log('Email:', email);
       console.log('Password:', password);
+      const hashedPassword = bcrypt.hashSync(password, bcrypt.genSaltSync());
+      const comparePass = await bcrypt.compare('pass', hashedPassword);
+      console.log(comparePass);
       try {
-        console.log('Parsed JSON:', username, email, password); // Log the parsed JSON values
+        console.log('Parsed JSON:', username, email, hashedPassword); // Log the parsed JSON values
         const query = 'INSERT INTO users (username, email, password) VALUES (?, ?, ?)';
-        database.query(query, [username, email, password], (err, result) => {
+        database.query(query, [username, email, hashedPassword], (err, result) => {
           if (err) {
             console.error('Error executing MySQL query:', err);
             return {status: 500, message: 'Internal Server Error'};
@@ -23,3 +28,4 @@ class RegistrationController {
       return {status: 200, message: 'Registered Successfully'};
     }
 }
+module.exports = RegistrationController;

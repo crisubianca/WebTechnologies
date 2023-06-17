@@ -1,4 +1,7 @@
+// import './Controllers/RegistrationController.js';
 // server.js
+const RegistrationController = require('./Controllers/RegistrationController');
+const LoginController = require('./Controllers/LoginController');
 const http = require('http');
 const fs = require('fs');
 const url = require('url');
@@ -8,6 +11,7 @@ const { user } = require('./config');
 const server = http.createServer((req, res) => {
   const { method, url: reqUrl } = req;
   const parsedUrl = url.parse(reqUrl, true);
+  global.database = database;
 
   const parseBody = function(body){
     console.log('Raw request body:', body);
@@ -74,9 +78,19 @@ const server = http.createServer((req, res) => {
       const data = parseBody(body);
       const controller_data = RegistrationController.register(data);
 
-      res.writeHead(controller_data.status, { 'Content-Type': 'application/json' });
-      res.end(controller_data.message);
+      // res.writeHead(302, { 'Location': '/homePage.html' });
+      // res.end();
 
+      res.writeHead(200, { 'Content-Type': 'text/html' });
+      fs.readFile('./homePage.html', null, function (error, data) {
+        if (error) {
+            res.writeHead(404);
+            res.write('Whoops! File not found!');
+        } else {
+            res.write(data);
+        }
+          res.end();
+      });
       console.log('Parsed data:', data);
       
     });
@@ -87,33 +101,15 @@ const server = http.createServer((req, res) => {
       body += chunk;
     });
     req.on('end', () => {
-      console.log('Raw request body:', body);
-      const data = {};
-      const keyValuePairs = body.split('&');
-      for (const pair of keyValuePairs) {
-        const [key, value] = pair.split('=');
-        data[key] = value;
-      }
+
+      const data = parseBody(body);
+      const controller_data = LoginController.login(data);
+
       console.log('Parsed data:', data);
-      const { username, password } = data;
-      console.log('Username:', username);
-      console.log('Password:', password);
-      const query = 'SELECT * FROM users WHERE username = ? AND password = ?';
-      database.query(query, [username, password], (err, result) => {
-        if (err) {
-          console.error('Error executing MySQL query:', err);
-          res.writeHead(500, { 'Content-Type': 'application/json' });
-          res.end('Internal Server Error');
-          return;
-        }
-        if (result.length === 0) {
-          res.writeHead(401, { 'Content-Type': 'application/json' });
-          res.end('Invalid credentials');
-        } else {
-          res.writeHead(200, { 'Content-Type': 'application/json' });
-          res.end('Logged in successfully');
-        }
-      });
+
+      res.writeHead(controller_data.status, { 'Content-Type': 'application/json' });
+      res.end(controller_data.message);
+      
     });
   } else {
     res.writeHead(404, { 'Content-Type': 'application/json' });
