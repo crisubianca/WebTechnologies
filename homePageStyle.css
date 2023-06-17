@@ -2,6 +2,26 @@
   box-sizing: border-box;
 }
 
+*,
+body,
+html {
+  &::-webkit-scrollbar {
+    background-color: #FCF9EA;
+    height: 20px;
+    width: 20px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #BADFDB;
+    border-radius: 99em;
+    border: 6px solid #FCF9EA;
+  }
+}
+
+a {
+  text-decoration: none;
+}
+
 html {
     height: 100%;
     width: 100%;
@@ -16,6 +36,7 @@ html {
     height: 100%;
     overflow: hidden;
     padding:0;
+    
   }
 
   header {
@@ -41,23 +62,22 @@ html {
   top: 40px;
   right: 105px;
   }
-  
-  /* .info-popup {
-    display: none;
-    position: absolute;
-    top: 60px;
-    right: 0;
-    width: 300px;
-    padding: 20px;
-    background-color: #FCF9EA;
-    border: 1px solid #F8A978;
-    border-radius: 5px;
-    z-index: 1;
+
+  .slideshow-container {
+    position: relative;
+    width: 100%;
+    height: 400px;
+    overflow-x: scroll;
+    white-space: nowrap;
   }
   
-  .info-popup p {
-    margin-bottom: 10px;
-  } */
+  .slide {
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    position: sticky;
+    left: 0;
+  }
   
   .button {
     font-size: 16px;
@@ -67,10 +87,11 @@ html {
     border: none;
     border-radius: 5px;
     padding: 10px 20px;
-    margin-right: 10px;
+    margin-right: 35px;
     cursor: pointer;
     transition: background-color 0.3s ease;
   }
+  
   
   .button:hover {
     background-color: #FFC5A1;
@@ -80,7 +101,7 @@ html {
     display: block;
   } */
   
-  .close-button {
+  /* .close-button {
     font-size: 16px;
     font-weight: bold;
     color: #FCF9EA;
@@ -95,11 +116,8 @@ html {
   
   .close-button:hover {
     background-color: #FFC5A1;
-  }
+  } */
   
-  .dropdown {
-    position: relative;
-  }
   
   .dropbtn {
     font-size: 16px;
@@ -112,6 +130,11 @@ html {
     cursor: pointer;
     transition: background-color 0.3s ease;
   }
+
+   .dropdown {
+    position: relative;
+    display: inline-block;
+  }
   
   .dropbtn:hover {
     background-color: #FFC5A1;
@@ -120,18 +143,20 @@ html {
   .dropdown-content {
     display: none;
     position: absolute;
-    top: 60px;
+    /* top: 60px; */
     right: 0;
     background-color: #FCF9EA;
     min-width: 160px;
-    padding: 10px;
+    /* padding: 10px; */
     z-index: 1;
     border: 1px solid #F8A978;
     border-radius: 5px;
   }
   
   .dropdown-content a {
-    color: #333333;
+    color:#BADFDB;
+    font-family: Arial, sans-serif;
+    font-weight: bold;
     font-size: 16px;
     display: block;
     padding: 10px 20px;
@@ -151,8 +176,111 @@ html {
   .dropdown:hover .dropbtn {
     background-color: #FFC5A1;
   }
+
+  .container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: center;
+}
+
+.profile-card {
+  display: inline-block;
+  margin: 10px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.profile-card img {
+  width: 150px;
+  height: 90px;
+  border-radius: 50%;
+}
+
+/* #addProfileButton {
+  margin-top: 20px;
+} */
+
+#addProfileButton {
+  font-size: 16px;
+  font-weight: bold;
+  color: #FCF9EA;
+  background-color: #BADFDB;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  margin-top: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+
+#addProfileButton:hover {
+  background-color: #FFC5A1;
+}
+
+.delete-profile-button,
+.upload-image-button {
+  font-size: 16px;
+  font-weight: bold;
+  color: #FCF9EA;
+  background-color: #BADFDB;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  margin-top: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+
+.delete-profile-button:hover,
+.upload-image-button:hover {
+  background-color: #FFC5A1;
+}
   
-  .main-container {
+  /* .slideshow-container {
+    padding: 0;
+    margin: 0;
+    display: block;
+    width: 100%;
+    overflow-y: hidden;
+    overflow-x: auto;
+    white-space: nowrap;
+    text-align: center;
+    scroll-behavior: smooth;
+  }
+  
+  .slide {
+    position: -webkit-sticky;
+    position: sticky;
+    left: 0;
+    width: min(50vw, 350px);
+    display: inline-block;
+    text-align: center;
+    background-color: #BADFDB;;
+    color: #FCF9EA;
+    padding-bottom: 1.5rem;
+    font-size: clamp(18px, 2.5vw, 22px);
+    box-shadow: -10px 0 30px 0 rgba(#BADFDB, 0.25);
+    margin-left: -4px;
+  }
+
+  .slide img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 10px;
+  }
+  
+  .form-button {
+    margin-top: 20px;
+  } */
+
+  /* .main-container {
     display: flex;
     height: 60%;
     max-width: 1080px;
@@ -213,8 +341,8 @@ html {
     color: #333333;
     cursor: pointer;
   }
-  
-  .image-button {
+   */
+  /* .image-button {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -235,5 +363,5 @@ html {
     max-width: 100%;
     max-height: 100%;
     object-fit: contain;
-  }
+  } */
   

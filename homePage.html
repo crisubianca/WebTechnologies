@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="homePageStyle.css">
   </head>
   <body>
+    <div w3-include-html="header.html"></div>
     <header class="box-shadow">
       <div class="logo-container ">
         <a href="homePage.html"><img src="logo.png" alt="Logo"></a>
@@ -20,42 +21,20 @@
 
       </div>
       <div class="dropdown">
-        <button class="dropbtn">Menu</button>
+        <button class="dropbtn">Settings</button>
         <div class="dropdown-content">
-          <a href="settings.html">Settings</a>
           <a href="index.html">Logout</a>
+          <a href="index.html">Delete Account</a>
         </div>
       </div>
     </header>
-    <div class="main-container">
-      <div class="left-container">
-        <div class="image-container">
-          <!-- Placeholder for future images -->
-          <img src="image4.jpg">
-        </div>
-      </div>
-      <div class="right-container">
-        <div class="image-button-container">
 
-            <!-- this should be a functionality to add child to the list/create child page in order to
-            manage its food and sleep schedule, medical history, etc.. -->
-
-            <button class="add-button">+</button>
-
-
-            <!-- <button class="image-button"><img src="picture1.jpeg" alt="Picture 1"></button>
-            <button class="image-button"><img src="picture2.jpeg" alt="Picture 2"></button>
-            <button class="image-button"><img src="picture3.jpeg" alt="Picture 3"></button> -->
-
-            <!-- pictures with your kids in link format, each one redirects you to your kid page 
-              where you can manage its food and sleep schedule, medical history, etc.. -->
-
-            <a href="fsSchedule.html" class="button"><img src="logo.png" alt="Picture 1"></a>
-            <a href="fsSchedule.html" class="button"><img src="logo.png" alt="Picture 2"></a>
-            <a href="fsSchedule.html" class="button"><img src="logo.png" alt="Picture 3"></a>
-        </div>
-      </div>
+    <div class="container">
+      <div id="profileList"></div>
+      <button id="addProfileButton">Add Profile</button>
     </div>
-    <script src="script.js"></script>
+    <!-- Add an input element to handle file uploads -->
+    <input type="file" id="imageUploadInput" style="display: none;">
+    <script src="homePage.js"></script>
   </body>
 </html>

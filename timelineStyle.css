@@ -3,6 +3,11 @@
 *::after {
   box-sizing: border-box;
 }
+
+a {
+  text-decoration: none;
+}
+
 html {
     height: 100%;
     width: 100%;
@@ -37,10 +42,10 @@ html {
   }
   
   .menu-buttons-container {
-    position: absolute;
-    display: block;
-    top: 40px;
-    right: 105px;
+    position:absolute;
+    display:block;
+    top: 41px;
+    right: 125px;
   }
   
   .button {
@@ -64,41 +69,44 @@ html {
     display: block;
   }
   
-  .dropdown {
-    position: relative;
-  }
-  
   .dropbtn {
     font-size: 16px;
     font-weight: bold;
-    color: #fcf9ea;
-    background-color: #badfdb;
+    color: #FCF9EA;
+    background-color: #BADFDB;
     border: none;
     border-radius: 5px;
     padding: 10px 20px;
     cursor: pointer;
     transition: background-color 0.3s ease;
   }
+
+   .dropdown {
+    position: relative;
+    display: inline-block;
+  }
   
   .dropbtn:hover {
-    background-color: #ffc5a1;
+    background-color: #FFC5A1;
   }
   
   .dropdown-content {
     display: none;
     position: absolute;
-    top: 60px;
+    /* top: 60px; */
     right: 0;
-    background-color: #fcf9ea;
+    background-color: #FCF9EA;
     min-width: 160px;
-    padding: 10px;
+    /* padding: 10px; */
     z-index: 1;
-    border: 1px solid #f8a978;
+    border: 1px solid #F8A978;
     border-radius: 5px;
   }
   
   .dropdown-content a {
-    color: #333333;
+    color:#BADFDB;
+    font-family: Arial, sans-serif;
+    font-weight: bold;
     font-size: 16px;
     display: block;
     padding: 10px 20px;
@@ -107,8 +115,8 @@ html {
   }
   
   .dropdown-content a:hover {
-    background-color: #f8a978;
-    color: #fcf9ea;
+    background-color: #F8A978;
+    color: #FCF9EA;
   }
   
   .dropdown:hover .dropdown-content {
@@ -116,7 +124,7 @@ html {
   }
   
   .dropdown:hover .dropbtn {
-    background-color: #ffc5a1;
+    background-color: #FFC5A1;
   }
 
 .timeline {
@@ -210,9 +218,14 @@ html {
 
 .container .content {
   padding: 30px 90px 30px 30px;
-  background: #F6D155;
+  background: #BADFDB;
   position: relative;
   border-radius: 0 500px 500px 0;
+  
+}
+
+.container .content:hover {
+  background-color: #ffc5a1;
   
 }
 
