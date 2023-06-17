@@ -111,28 +111,28 @@ const server = http.createServer((req, res) => {
       // Redirect to home page
       // res.writeHead(302, { 'Location': '/homePage.html' });
       // res.end();
-      res.writeHead(200, { 'Content-Type': 'text/html' });
-      fs.readFile('./homePage.html', null, function (error, data) {
-        if (error) {
-            res.writeHead(404);
-            res.write('Whoops! File not found!');
-        } else {
-            res.write(data);
-        }
-          res.end();
-      });
-    } else {
-      // Redirect to login page
-      fs.readFile('./login.html', (err, data) => {
-        if (err) {
-          res.writeHead(500, { 'Content-Type': 'application/json' });
-          res.end('Internal Server Error');
-          return;
-        }
         res.writeHead(200, { 'Content-Type': 'text/html' });
-        res.end(data);
-      });
-    }
+        fs.readFile('./homePage.html', null, function (error, data) {
+          if (error) {
+              res.writeHead(404);
+              res.write('Whoops! File not found!');
+          } else {
+              res.write(data);
+          }
+            res.end();
+        });
+      } else {
+        // Redirect to login page
+        fs.readFile('./login.html', (err, data) => {
+          if (err) {
+            res.writeHead(500, { 'Content-Type': 'application/json' });
+            res.end('Internal Server Error');
+            return;
+          }
+          res.writeHead(200, { 'Content-Type': 'text/html' });
+          res.end(data);
+        });
+      }
 
       // res.writeHead(controller_data.status, { 'Content-Type': 'application/json' });
       // res.end(controller_data.message);
