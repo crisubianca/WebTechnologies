@@ -1,6 +1,7 @@
 class LoginController {
     static login = function(data){
     
+      const database = require('./database');
       const { username, password } = data;
       console.log('Username:', username);
       console.log('Password:', password);

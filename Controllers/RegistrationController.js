@@ -2,6 +2,7 @@
 class RegistrationController {
     static register = async function(data){
 
+      const database = require('./database');
       const bcrypt = require('bcrypt');
       const { username, email, password } = data;
       console.log('Username:', username);
