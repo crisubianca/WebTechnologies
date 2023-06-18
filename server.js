@@ -1,5 +1,6 @@
 // import './Controllers/RegistrationController.js';
 // server.js
+const secretKey = "t56ZJLXr8Mk6Yb6te4LVRpt4zWD65GFH";
 const RegistrationController = require('./Controllers/RegistrationController');
 const LoginController = require('./Controllers/LoginController');
 const http = require('http');
@@ -7,6 +8,7 @@ const fs = require('fs');
 const url = require('url');
 const database = require('./database');
 const { user } = require('./config');
+const jwt = require('jsonwebtoken');
 
 const server = http.createServer((req, res) => {
   const { method, url: reqUrl } = req;
@@ -123,26 +125,18 @@ const server = http.createServer((req, res) => {
       body += chunk;
     });
     req.on('end', () => {
-
       const data = parseBody(body);
       const controller_data = LoginController.login(data);
-
+  
       console.log('Parsed data:', data);
-
+  
       if (controller_data.status === 200) {
-      // Redirect to home page
-      // res.writeHead(302, { 'Location': '/homePage.html' });
-      // res.end();
-        res.writeHead(200, { 'Content-Type': 'text/html' });
-        fs.readFile('./Views/homePage.html', null, function (error, data) {
-          if (error) {
-              res.writeHead(404);
-              res.write('Whoops! File not found!');
-          } else {
-              res.write(data);
-          }
-            res.end();
-        });
+        // Generate a JWT token
+        const token = jwt.sign({ username: data.username }, secretKey, { expiresIn: '1h' });
+  
+        // Redirect to home page with the token as a query parameter
+        res.writeHead(302, { 'Location': '/homePage?token=' + token });
+        res.end();
       } else {
         // Redirect to login page
         fs.readFile('./Views/login.html', (err, data) => {
@@ -155,23 +149,37 @@ const server = http.createServer((req, res) => {
           res.end(data);
         });
       }
-
-      // res.writeHead(controller_data.status, { 'Content-Type': 'application/json' });
-      // res.end(controller_data.message);
-      
     });
-  } 
+  }  
   else if (method === 'GET' && parsedUrl.pathname === '/homePage') {
-    fs.readFile('./Views/homePage.html', (err, data) => {
-      if (err) {
-        res.writeHead(500, { 'Content-Type': 'application/json' });
-        res.end('Internal Server Error');
-        return;
-      }
-      res.writeHead(200, { 'Content-Type': 'text/html' });
-      res.end(data);
-    });
-  }
+    const token = parsedUrl.query.token;
+  
+    if (token) {
+      // Verify the token
+      jwt.verify(token, secretKey, (err, decoded) => {
+        if (err) {
+          res.writeHead(401, { 'Content-Type': 'application/json' });
+          res.end(JSON.stringify({ error: 'Invalid token' }));
+          return;
+        }
+  
+        // Token is valid, serve the home page
+        fs.readFile('./Views/homePage.html', (err, data) => {
+          if (err) {
+            res.writeHead(500, { 'Content-Type': 'application/json' });
+            res.end('Internal Server Error');
+            return;
+          }
+          res.writeHead(200, { 'Content-Type': 'text/html' });
+          res.end(data);
+        });
+      });
+    } else {
+      // Token is missing, redirect to login page
+      res.writeHead(302, { 'Location': '/login' });
+      res.end();
+    }
+  }  
   else if (method === 'GET' && parsedUrl.pathname === '/AboutUs') {
     fs.readFile('./Views/info.html', (err, data) => {
       if (err) {
