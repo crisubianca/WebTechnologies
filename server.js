@@ -160,8 +160,42 @@ const server = http.createServer((req, res) => {
       // res.end(controller_data.message);
       
     });
-  } else {
-    res.writeHead(404, { 'Content-Type': 'application/json' });
+  } 
+  else if (method === 'GET' && parsedUrl.pathname === '/homePage') {
+    fs.readFile('./Views/homePage.html', (err, data) => {
+      if (err) {
+        res.writeHead(500, { 'Content-Type': 'application/json' });
+        res.end('Internal Server Error');
+        return;
+      }
+      res.writeHead(200, { 'Content-Type': 'text/html' });
+      res.end(data);
+    });
+  }
+  else if (method === 'GET' && parsedUrl.pathname === '/AboutUs') {
+    fs.readFile('./Views/info.html', (err, data) => {
+      if (err) {
+        res.writeHead(500, { 'Content-Type': 'application/json' });
+        res.end('Internal Server Error');
+        return;
+      }
+      res.writeHead(200, { 'Content-Type': 'text/html' });
+      res.end(data);
+    });
+  }
+  else if (method === 'GET' && parsedUrl.pathname === '/fsSchedule') {
+    fs.readFile('./Views/fsSchedule.html', (err, data) => {
+      if (err) {
+        res.writeHead(500, { 'Content-Type': 'application/json' });
+        res.end('Internal Server Error');
+        return;
+      }
+      res.writeHead(200, { 'Content-Type': 'text/html' });
+      res.end(data);
+    });
+  }
+  else {
+    res.writeHead(404, { 'Content-Type': 'application/octet-stream' });
     res.end('Not Found');
   }
 });
