@@ -101,24 +101,28 @@ confirmPassword.input.addEventListener("input", () => {
 });
 
 function registerUser() {
+    console.log("BLA");
     let valid = true;
     for (let i = 0; i < formInputs.length; i++) {
         if (!formInputs[i].valid) {
+            console.log(formInputs[i]);
             formInputs[i].input.style.outlineColor = "hsl(0, 100%, 34%)";
             valid = false;
         }
     }
 
     if (!valid) {
+        console.log("BLA");
         return;
     }
 
     const userData = {
-        userName: username.input.value,
+        username: username.input.value,
         email: email.input.value,
         password: password.input.value,
     };
 
+    console.log("BLA");
     fetch("./registerUser", {
         method: "POST",
         mode: "cors",

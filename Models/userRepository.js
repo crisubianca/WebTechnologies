@@ -1,10 +1,10 @@
-const database = require('./database');
+const database = require('../database');
 
 function create(user) {
     let query = 'INSERT INTO users (username, email, password) VALUES (?, ?, ?)';
     let queryValues = [user.username, user.email, user.password];
     return new Promise((resolve, reject) => {
-        database.query(query, queryValues).then(results => {
+        database.promise().query(query, queryValues).then(results => {
             console.log(results);
             resolve(results);
         }).catch(error => {
