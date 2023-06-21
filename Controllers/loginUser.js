@@ -22,18 +22,20 @@ async function loginUser(req, res) {
             username,
             password,
         };
-
+       
         userRepository
             .findByUsername(user.username)
             .then((userData) => {
                 bcrypt
                     .compare(user.password, userData.password)
                     .then(function (result) {
+                        console.log(process.env.ACCESS_TOKEN_SECRET);
                         const token = jwt.sign(
                             { username: userData.username },
                             process.env.ACCESS_TOKEN_SECRET,
                             { expiresIn: "2m" }
                         );
+                        console.log("test");
                         const refreshToken = jwt.sign(
                             { username: userData.username },
                             process.env.ACCESS_TOKEN_SECRET,

@@ -43,14 +43,15 @@ function findById(id) {
 }
 
 function findByUsername(username) {
-    let query = "select * from users where username = $1";
+    let query = "select * from users where username = ?";
     return new Promise((resolve, reject) => {
-        database.query(query, [username])
+        database.promise().query(query, [username])
         .then((results) => {
-            if(!results.rows[0]) {
+            console.log('rows:', results[0][0]);
+            if(!results[0][0]) {
                 reject("user not found");
             }
-            resolve(results.rows[0]);
+            resolve(results[0][0]);
         })
         .catch((error) => {
             reject(error);

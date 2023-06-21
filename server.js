@@ -228,6 +228,12 @@ const server = http.createServer((req, res) => {
             case "./registerUser":
                 controllers.registerUserController(req, res);
                 break;
+            case "./login":
+                controllers.loginController(req, res);
+                break;
+            case "./loginUser":
+                controllers.loginUserController(req, res);
+                break;
             default:
                 console.log("ERR!!");
         }
