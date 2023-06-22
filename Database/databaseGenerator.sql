@@ -11,6 +11,7 @@ CREATE TABLE children(
     first_name VARCHAR(64) NOT NULL,
     last_name VARCHAR(64) NOT NULL,
     birthdate DATE NOT NULL,
+    gender VARCHAR(10) NOT NULL,
     user_id INT NOT NULL,
     FOREIGN KEY (user_id) REFERENCES users(id));
 

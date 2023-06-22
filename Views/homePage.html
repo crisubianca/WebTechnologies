@@ -12,11 +12,6 @@
         <a href="homePage"><img src="./public/images/logo.png" alt="Logo"></a>
       </div>
       <div class="info-button-container">
-        <!-- <button class="info-button">Info</button>
-        <div class="info-popup">
-          <p>Information about the website.</p>
-          <button class="close-button">Close</button>
-        </div> -->
         <a href="AboutUs" class="button">About&Help</a>
 
       </div>
@@ -32,6 +27,27 @@
     <div class="container">
       <div id="profileList"></div>
       <button id="addProfileButton">Add Profile</button>
+
+      <!-- The Modal -->
+      <div id="myModal" class="modal">
+
+        <!-- Modal content -->
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <form action="register" method="POST">
+            <input type="text" id="name" name="name" placeholder="Name" required autocomplete="off">   
+            <input type="text" id="surname" name="surname" placeholder="Surname" required autocomplete="off">
+            <input type="date" id="birthdate" name="birthdate" placeholder="Birthdate" required autocomplete="off">
+              <select id="gender" name="gender">
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+              </select>
+
+            <button  type="button" id="addChild">Add Child</button>
+        </form>
+        </div>
+
+      </div>
     </div>
     <!-- Add an input element to handle file uploads -->
     <input type="file" id="imageUploadInput" style="display: none;">

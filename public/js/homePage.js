@@ -1,16 +1,14 @@
 // Sample profile data
-let profiles = [
-  { id: 1, name: '{Kids Name}', image: 'logo.png' }
-];
+let profiles = [{ id: 1, name: "{Kids Name}", image: "logo.png" }];
 
 // Function to generate profile cards
 function generateProfileCards() {
-  const profileList = document.getElementById('profileList');
-  profileList.innerHTML = '';
+  const profileList = document.getElementById("profileList");
+  profileList.innerHTML = "";
 
   profiles.forEach((profile) => {
-    const profileCard = document.createElement('div');
-    profileCard.classList.add('profile-card');
+    const profileCard = document.createElement("div");
+    profileCard.classList.add("profile-card");
     profileCard.innerHTML = `
       <img src="${profile.image}" alt="${profile.name}">
       <h3>${profile.name}</h3>
@@ -19,21 +17,21 @@ function generateProfileCards() {
     `;
 
     // Add event listener for profile card click
-    profileCard.addEventListener('click', () => {
+    profileCard.addEventListener("click", () => {
       redirectToProfilePage(profile.id);
     });
 
     // Add event listener for delete profile button
-    const deleteButton = profileCard.querySelector('.delete-profile-button');
-    deleteButton.addEventListener('click', (event) => {
+    const deleteButton = profileCard.querySelector(".delete-profile-button");
+    deleteButton.addEventListener("click", (event) => {
       event.stopPropagation();
       const profileId = parseInt(deleteButton.dataset.profileId);
       deleteProfile(profileId);
     });
 
     // Add event listener for upload image button
-    const uploadButton = profileCard.querySelector('.upload-image-button');
-    uploadButton.addEventListener('click', (event) => {
+    const uploadButton = profileCard.querySelector(".upload-image-button");
+    uploadButton.addEventListener("click", (event) => {
       event.stopPropagation();
       const profileId = parseInt(uploadButton.dataset.profileId);
       handleImageUpload(profileId);
@@ -51,10 +49,10 @@ function deleteProfile(profileId) {
 
 // Function to handle image upload
 function handleImageUpload(profileId) {
-  const input = document.getElementById('imageUploadInput');
+  const input = document.getElementById("imageUploadInput");
   input.click();
 
-  input.addEventListener('change', (event) => {
+  input.addEventListener("change", (event) => {
     const file = event.target.files[0];
     const reader = new FileReader();
 
@@ -82,57 +80,57 @@ function redirectToProfilePage(profileId) {
   const profile = profiles.find((profile) => profile.id === profileId);
   if (profile) {
     // Replace 'fsSchedule.html' with your actual profile-specific HTML page
-    const profilePageUrl = `fsSchedule.html?name=${encodeURIComponent(profile.name)}`;
+    const profilePageUrl = `fsSchedule.html?name=${encodeURIComponent(
+      profile.name
+    )}`;
     window.location.href = profilePageUrl;
   }
 }
 
 // Function to handle add profile button click
-document.getElementById('addProfileButton').addEventListener('click', () => {
-  const profileName = prompt('Enter profile name:');
-  const profileId = profiles.length + 1;
-  const newProfile = { id: profileId, name: profileName, image: '' };
-  profiles.push(newProfile);
-  generateProfileCards();
-});
+// document.getElementById('addProfileButton').addEventListener('click', () => {
+//   const profileName = prompt('Enter profile name:');
+//   const profileId = profiles.length + 1;
+//   const newProfile = { id: profileId, name: profileName, image: '' };
+//   profiles.push(newProfile);
+//   generateProfileCards();
+// });
+
+// Get the modal
+var modal = document.getElementById("myModal");
+// Get the button that opens the modal
+var btn = document.getElementById("addProfileButton");
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks the button, open the modal
+btn.onclick = function () {
+  modal.style.display = "block";
+};
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function () {
+  modal.style.display = "none";
+};
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function (event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+};
+
+const name = document.getElementById("name");
+const surname = document.getElementById("surname");
+const birthdate = document.getElementById("birthdate");
+const gender = document.getElementById("gender");
+
+document.getElementById("addChild").onclick = function () {
+  console.log(surname.value);
+};
 
 // Generate profile cards on page load
 generateProfileCards();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // function includeHTML() {
 //   var z, i, elmnt, file, xhttp;
@@ -161,4 +159,3 @@ generateProfileCards();
 //     }
 //   }
 // }
-  

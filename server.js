@@ -248,6 +248,12 @@ const server = http.createServer((req, res) => {
             case "./homePage":
                 controllers.homePageController(req, res);
                 break;
+            case "./logout":
+                controllers.logoutController(req, res);
+                break;
+            case "./deleteAccount":
+                controllers.deleteAccountController(req, res);
+                break;
             default:
                 console.log("ERR!!");
         }

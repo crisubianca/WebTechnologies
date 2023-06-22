@@ -53,12 +53,7 @@ label {
     border: 2px solid #BADFDB;
 }
   
-.button-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;}
-  
-.button {
+button {
     display: inline-block;
     padding: 10px 20px;
     margin: 0 10px;
@@ -72,7 +67,7 @@ label {
     transition: background-color 0.3s ease;
 }
   
-.button:hover {
+button:hover {
   color: #FCF9EA;
     background-color: #BADFDB;
     cursor: pointer;

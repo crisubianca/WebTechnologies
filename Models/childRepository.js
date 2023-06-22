@@ -1,8 +1,8 @@
 const database = require('../database');
 
-function create(user) {
-    let query = 'INSERT INTO users (username, email, password) VALUES (?, ?, ?)';
-    let queryValues = [user.username, user.email, user.password];
+function create(child) {
+    let query = 'INSERT INTO childern (first_name, last_name, birthdate, gender, user_id) VALUES (?, ?, ?, ?, ?)';
+    let queryValues = [child.name, child.surname, child.birthdate, child.gender, child.user_id];
     return new Promise((resolve, reject) => {
         database.promise().query(query, queryValues).then(results => {
             console.log(results);
@@ -14,11 +14,11 @@ function create(user) {
 }
 
 function getAll() {
-    let query = "SELECT * FROM users";
+    let query = "SELECT * FROM children";
     return new Promise((resolve, reject) => {
-        database.query(query)
+        database.promise().query(query)
         .then((results) => {
-            resolve(results.rows);
+            resolve(results[0]);
         })
         .catch((error) => {
             reject(error);
@@ -26,30 +26,13 @@ function getAll() {
     })
 }
 
-function findById(id) {
-    let query = "SELECT * FROM users WHERE id = $1";
+function findByParentId(id) {
+    let query = "SELECT * FROM children WHERE user_id = ?";
     return new Promise((resolve, reject) => {
-        database.query(query, [id])
+        database.promise().query(query, [id])
         .then((results) => {
-            if(!results.rows[0]) {
-                reject("user not found");
-            }
-            resolve(results.rows[0]);
-        })
-        .catch((error) => {
-            reject(error);
-        });
-    })
-}
-
-function findByUsername(username) {
-    let query = "select * from users where username = ?";
-    return new Promise((resolve, reject) => {
-        database.promise().query(query, [username])
-        .then((results) => {
-            console.log('rows:', results[0][0]);
             if(!results[0][0]) {
-                reject("user not found");
+                reject("child not found");
             }
             resolve(results[0][0]);
         })
@@ -59,10 +42,10 @@ function findByUsername(username) {
     })
 }
 
-function deleteByUsername(username) {
-    let queryText = "delete from users where username = ?";
+function deleteByParentId(id) {
+    let queryText = "delete from children where user_id = ?";
     return new Promise((resolve, reject) => {
-        database.promise().query(queryText, [username])
+        database.promise().query(queryText, [id])
         .then((results) => {
             resolve(results);
         })
@@ -88,9 +71,8 @@ function deleteById(id) {
 
 module.exports = {
     create,
-    findByUsername,
-    findById,
-    deleteByUsername,
+    findByParentId,
+    deleteByParentId,
     deleteById,
     getAll
 }
