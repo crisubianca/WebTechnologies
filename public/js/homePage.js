@@ -120,10 +120,80 @@ window.onclick = function (event) {
   }
 };
 
-const name = document.getElementById("name");
+const firstname = document.getElementById("name");
 const surname = document.getElementById("surname");
 const birthdate = document.getElementById("birthdate");
 const gender = document.getElementById("gender");
+
+formInputs = [firstname, surname, birthdate, gender];
+
+const isRequired = (value) => (value === "" ? false : true);
+
+firstname.input.addEventListener("input", () => {
+  if (isRequired(firstname.input.value.trim())) {
+    firstname.input.style.outlineColor = "hsl(145, 63%, 40%)";
+  } else {
+    firstname.input.style.outlineColor = "hsl(0, 100%, 34%)";
+  }
+});
+
+surname.input.addEventListener("input", () => {
+  if (isRequired(surname.input.value.trim())) {
+    surname.input.style.outlineColor = "hsl(145, 63%, 40%)";
+  } else {
+    surname.input.style.outlineColor = "hsl(0, 100%, 34%)";
+  }
+});
+
+birthdate.input.addEventListener("input", (event) => {
+  const selectedDate = event.target.value;
+  if (isRequired(selectedDate)) {
+    birthdate.input.style.outlineColor = "hsl(145, 63%, 40%)";
+  } else {
+    birthdate.input.style.outlineColor = "hsl(0, 100%, 34%)";
+  }
+});
+
+gender.input.addEventListener("change", (event) => {
+  const selectedGender = event.target.value;
+  if (isRequired(selectedGender)) {
+    gender.input.style.outlineColor = "hsl(145, 63%, 40%)";
+  } else {
+    gender.input.style.outlineColor = "hsl(0, 100%, 34%)";
+  }
+});
+
+function addChildInDB() {
+  const childData = {
+    firstname: firstname.value,
+    surname: surname.value,
+    birthdate: birthdate.value,
+    gender: gender.value,
+  };
+
+  console.log(childData.birthdate);
+
+  fetch("./homePage", {
+    method: "POST",
+    mode: "cors",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(childData),
+  })
+    .then((res) => {
+      console.log(res);
+      if (res.status == 200) {
+        console.log("succes");
+        window.location.href = "./homePage";
+      } else if (res.status == 401) {
+        console.log("bad request");
+      }
+    })
+    .catch((err) => {
+      console.log("error");
+    });
+}
 
 document.getElementById("addChild").onclick = function () {
   console.log(surname.value);
