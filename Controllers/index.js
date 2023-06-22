@@ -4,6 +4,7 @@ const { registerController } = require("./register");
 const { registerUserController } = require("./registerUser");
 const { loginController } = require("./login");
 const { loginUserController } = require("./loginUser");
+const { homePageController } = require("./homePage");
 
 module.exports = {
     startPageController,
@@ -11,5 +12,6 @@ module.exports = {
     loginUserController,
     publicController,
     registerController,
-    registerUserController
+    registerUserController,
+    homePageController
 };

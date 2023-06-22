@@ -229,6 +229,10 @@ const server = http.createServer((req, res) => {
                 req.url = "./public/images/logo.png";
                 controllers.publicController(req, res);
                 break;
+            case "./logo.png":
+                req.url = "./public/images/logo.png";
+                controllers.publicController(req, res);
+                break;
             case "./register":
                 controllers.registerController(req, res);
                 break;
@@ -240,6 +244,9 @@ const server = http.createServer((req, res) => {
                 break;
             case "./loginUser":
                 controllers.loginUserController(req, res);
+                break;
+            case "./homePage":
+                controllers.homePageController(req, res);
                 break;
             default:
                 console.log("ERR!!");
