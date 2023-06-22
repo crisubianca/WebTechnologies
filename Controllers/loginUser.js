@@ -29,13 +29,13 @@ async function loginUser(req, res) {
                 bcrypt
                     .compare(user.password, userData.password)
                     .then(function (result) {
-                        console.log(process.env.ACCESS_TOKEN_SECRET);
+                        console.log("process.env.ACCESS_TOKEN_SECRET: ",process.env.ACCESS_TOKEN_SECRET);
                         const token = jwt.sign(
                             { username: userData.username },
                             process.env.ACCESS_TOKEN_SECRET,
                             { expiresIn: "2m" }
                         );
-                        console.log("test");
+                        // console.log("test");
                         const refreshToken = jwt.sign(
                             { username: userData.username },
                             process.env.ACCESS_TOKEN_SECRET,

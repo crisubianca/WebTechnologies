@@ -101,7 +101,7 @@ confirmPassword.input.addEventListener("input", () => {
 });
 
 function registerUser() {
-    console.log("BLA");
+    // console.log("BLA");
     let valid = true;
     for (let i = 0; i < formInputs.length; i++) {
         if (!formInputs[i].valid) {
@@ -112,7 +112,7 @@ function registerUser() {
     }
 
     if (!valid) {
-        console.log("BLA");
+        // console.log("BLA");
         return;
     }
 
@@ -122,7 +122,7 @@ function registerUser() {
         password: password.input.value,
     };
 
-    console.log("BLA");
+    // console.log("BLA");
     fetch("./registerUser", {
         method: "POST",
         mode: "cors",

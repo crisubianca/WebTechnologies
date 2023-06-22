@@ -222,6 +222,13 @@ const server = http.createServer((req, res) => {
         controllers.publicController(req, res);
     } else {
         switch (url.parse(req.url, true).pathname) {
+            case "./":
+                controllers.startPageController(req, res);
+                break;
+            case "./favicon.ico":
+                req.url = "./public/images/logo.png";
+                controllers.publicController(req, res);
+                break;
             case "./register":
                 controllers.registerController(req, res);
                 break;

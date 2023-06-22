@@ -5,7 +5,7 @@ function getView(url) {
     return fs.readFileSync(path.join(__dirname, url))
 }
 
-let viewIndex = getView('./index.html');
+let viewStartPage = getView('./index.html');
 let viewLogin = getView('./login.html');
 let viewSignUp = getView('./signup.html');
 let viewHomePage = getView('./homePage.html');
@@ -15,7 +15,7 @@ let viewMedicalHistory = getView('./medicalHistory.html');
 let viewTimeline = getView('./timeline.html');
 
 module.exports = {
-    viewIndex, viewLogin, viewSignUp, viewHomePage,
+    viewStartPage, viewLogin, viewSignUp, viewHomePage,
     viewInfo, viewSchedule, viewMedicalHistory,
     viewTimeline
 }
