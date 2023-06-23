@@ -1,11 +1,10 @@
 const database = require('../database');
 
 function create(child) {
-    let query = 'INSERT INTO childern (first_name, last_name, birthdate, gender, user_id) VALUES (?, ?, ?, ?, ?)';
-    let queryValues = [child.name, child.surname, child.birthdate, child.gender, child.user_id];
+    let query = 'INSERT INTO children (first_name, last_name, birthdate, gender, user_id) VALUES (?, ?, ?, ?, ?)';
+    let queryValues = [child.firstname, child.surname, child.birthdate, child.gender, child.user_id];
     return new Promise((resolve, reject) => {
         database.promise().query(query, queryValues).then(results => {
-            console.log(results);
             resolve(results);
         }).catch(error => {
             reject(error);
@@ -31,10 +30,11 @@ function findByParentId(id) {
     return new Promise((resolve, reject) => {
         database.promise().query(query, [id])
         .then((results) => {
-            if(!results[0][0]) {
+            // console.log("results[0][0]", results[0])
+            if(!results[0]) {
                 reject("child not found");
             }
-            resolve(results[0][0]);
+            resolve(results[0]);
         })
         .catch((error) => {
             reject(error);

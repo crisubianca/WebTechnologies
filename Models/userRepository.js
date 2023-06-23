@@ -59,6 +59,24 @@ function findByUsername(username) {
     })
 }
 
+function returnIdByUsername(username) {
+    let query = "select * from users where username = ?";
+    return new Promise((resolve, reject) => {
+        database.promise().query(query, [username])
+        .then((results) => {
+            console.log('rows:', results[0][0]);
+            if(!results[0][0]) {
+                reject("user not found");
+            }
+            resolve(results[0][0].id);
+            // results[0][0].id;
+        })
+        .catch((error) => {
+            reject(error);
+        });
+    })
+}
+
 function deleteByUsername(username) {
     let queryText = "delete from users where username = ?";
     return new Promise((resolve, reject) => {
@@ -92,5 +110,6 @@ module.exports = {
     findById,
     deleteByUsername,
     deleteById,
-    getAll
+    getAll,
+    returnIdByUsername
 }

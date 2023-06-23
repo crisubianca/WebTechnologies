@@ -248,6 +248,9 @@ const server = http.createServer((req, res) => {
             case "./homePage":
                 controllers.homePageController(req, res);
                 break;
+            case "./showProfiles":
+                controllers.showProfilesController(req, res);
+                break;
             case "./logout":
                 controllers.logoutController(req, res);
                 break;

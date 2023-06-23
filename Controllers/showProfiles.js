@@ -7,7 +7,7 @@ const bcrypt = require("bcrypt");
 const mime = require("mime");
 const jwt = require("jsonwebtoken");
 
-async function homePageController(req, res) {
+async function showProfilesController(req, res) {
   let user = auth(req, res);
   if (!user) {
     console.log("user is not authorized");
@@ -16,10 +16,7 @@ async function homePageController(req, res) {
   } else {
     switch (req.method) {
       case "GET":
-        res.end(viewHomePage, "utf8");
-        break;
-      case "POST":
-        homePage(req, res);
+        showProfiles(req, res);
         break;
       default:
         res.writeHead(405);
@@ -28,7 +25,8 @@ async function homePageController(req, res) {
   }
 }
 
-async function homePage(req, res) {
+async function showProfiles(req, res) {
+    console.log("SUNT AICI");
   let user = auth(req, res);
   try {
     const user_id = await userRepository
@@ -36,33 +34,24 @@ async function homePage(req, res) {
       .then((parentId) => {
         return parentId;
       });
-
-    const body = await getPostData(req);
-    const { firstname, surname, gender, birthdate } = body;
-    const child = {
-      firstname,
-      surname,
-      birthdate,
-      gender,
-      user_id,
-    };
+      console.log("user id", user_id);
     childRepository
-      .create(child)
+      .findByParentId(user_id)
       .then((childData) => {
-        console.log("ChildData", childData);
+        // console.log("Child data", childData);
+        res.writeHead(200, { "Content-Type": "application/json" });
+        res.end(JSON.stringify(childData));
       })
       .catch((err) => {
         console.log(err);
         res.writeHead(401, { "Content-Type": mime.getType(".txt") });
-        res.end("user doesn't exist");
+        res.end("user_id doesn't exist");
       });
   } catch (error) {
     console.log(error);
   }
 }
 
-
-
 module.exports = {
-  homePageController,
+    showProfilesController,
 };

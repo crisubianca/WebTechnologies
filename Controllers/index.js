@@ -7,6 +7,7 @@ const { loginUserController } = require("./loginUser");
 const { homePageController } = require("./homePage");
 const { logoutController } = require("./logout");
 const { deleteAccountController } = require("./deleteAccount");
+const { showProfilesController } = require("./showProfiles");
 
 module.exports = {
     startPageController,
@@ -17,5 +18,6 @@ module.exports = {
     registerUserController,
     homePageController,
     logoutController,
-    deleteAccountController
+    deleteAccountController,
+    showProfilesController,
 };

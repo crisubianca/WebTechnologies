@@ -1,9 +1,20 @@
 // Sample profile data
-let profiles = [{ id: 1, name: "{Kids Name}", image: "logo.png" }];
+// let profiles = [{ id: 1, name: "{Kids Name}", image: "logo.png" }];
+
+async function getChildrenData() {
+  let profiles = await fetch("./showProfiles");
+  profiles = await profiles.json();
+  // console.log(jsonData);
+  console.log("profiles", profiles);
+  return profiles;
+}
 
 // Function to generate profile cards
-function generateProfileCards() {
+async function generateProfileCards() {
   const profileList = document.getElementById("profileList");
+
+  let profiles = await getChildrenData();
+
   profileList.innerHTML = "";
 
   profiles.forEach((profile) => {
@@ -11,9 +22,9 @@ function generateProfileCards() {
     profileCard.classList.add("profile-card");
     profileCard.innerHTML = `
       <img src="${profile.image}" alt="${profile.name}">
-      <h3>${profile.name}</h3>
-      <button class="delete-profile-button" data-profile-id="${profile.id}">Delete</button>
-      <button class="upload-image-button" data-profile-id="${profile.id}">Upload Image</button>
+      <h3>${profile.first_name}</h3>
+      <button class="delete-profile-button" data-profile-id="${profile.child_id}">Delete</button>
+      <button class="upload-image-button" data-profile-id="${profile.child_id}">Upload Image</button>
     `;
 
     // Add event listener for profile card click
@@ -163,6 +174,7 @@ gender.input.addEventListener("change", (event) => {
   }
 });
 
+
 function addChildInDB() {
   const childData = {
     firstname: firstname.value,
@@ -171,7 +183,6 @@ function addChildInDB() {
     gender: gender.value,
   };
 
-  console.log(childData.birthdate);
 
   fetch("./homePage", {
     method: "POST",
@@ -193,39 +204,9 @@ function addChildInDB() {
     .catch((err) => {
       console.log("error");
     });
+  modal.style.display = "none";
+  
+  generateProfileCards();
 }
-
-document.getElementById("addChild").onclick = function () {
-  console.log(surname.value);
-};
-
 // Generate profile cards on page load
 generateProfileCards();
-
-// function includeHTML() {
-//   var z, i, elmnt, file, xhttp;
-//   /* Loop through a collection of all HTML elements: */
-//   z = document.getElementsByTagName("*");
-//   for (i = 0; i < z.length; i++) {
-//     elmnt = z[i];
-//     /*search for elements with a certain atrribute:*/
-//     file = elmnt.getAttribute("w3-include-html");
-//     if (file) {
-//       /* Make an HTTP request using the attribute value as the file name: */
-//       xhttp = new XMLHttpRequest();
-//       xhttp.onreadystatechange = function() {
-//         if (this.readyState == 4) {
-//           if (this.status == 200) {elmnt.innerHTML = this.responseText;}
-//           if (this.status == 404) {elmnt.innerHTML = "Page not found.";}
-//           /* Remove the attribute, and call this function once more: */
-//           elmnt.removeAttribute("w3-include-html");
-//           includeHTML();
-//         }
-//       }
-//       xhttp.open("GET", file, true);
-//       xhttp.send();
-//       /* Exit the function: */
-//       return;
-//     }
-//   }
-// }

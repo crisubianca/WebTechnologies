@@ -5,7 +5,7 @@
     <title>Home Page</title>
     <link rel="stylesheet" href="./public/css/homePageStyle.css">
   </head>
-  <body>
+  <body onload="generateProfileCards();">
     <div w3-include-html="header.html"></div>
     <header class="box-shadow">
       <div class="logo-container ">
@@ -25,8 +25,8 @@
     </header>
 
     <div class="container">
-      <div id="profileList"></div>
       <button id="addProfileButton">Add Profile</button>
+      <div id="profileList"></div>
 
       <!-- The Modal -->
       <div id="myModal" class="modal">
