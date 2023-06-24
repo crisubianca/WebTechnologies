@@ -266,6 +266,9 @@ const server = http.createServer((req, res) => {
             case "./timeline":
                 controllers.timelineController(req, res);
                 break;
+            case "./showMedicalHistory":
+                controllers.showMedicalHistoryController(req, res);
+                break;
             default:
                 console.log("ERR!!");
         }

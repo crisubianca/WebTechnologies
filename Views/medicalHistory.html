@@ -5,15 +5,15 @@
         <title> Medical History</title>
         <link rel ="stylesheet" href="./public/css/medicalHistoryStyle.css">
     </head>
-    <body>
+    <body onload="addDataToTable();">
         <header class="box-shadow">
             <div class="logo-container">
               <a href="homePage.html"><img src="logo.png" alt="Logo"></a>
             </div>
             <div class="menu-buttons-container">
-              <a href="fsSchedule.html" class="button">Feeding and Sleeping Schedule</a>
-              <a href="medicalHistory.html" class="button">Medical History</a>
-              <a href="timeline.html" class="button">Timeline</a>
+              <button id="fsSchedule" class="button">Feeding and Sleeping Schedule</button>
+              <button id="medicalHistory" class="button">Medical History</button>
+              <button id="timeline" class="button">Timeline</button>
             </div>
             <div class="dropdown">
               <button class="dropbtn">Settings</button>
@@ -27,71 +27,31 @@
         <div class ="container">
             <!-- <h1> This is {kid's name} medical history</h1> -->
 
-            <form>
-              <legend>Child's Personal Information</legend>
+            <form id="details">
+              <legend>Details about the doctor's visit</legend>
+              <input type="date" id="date" name="date"  max="" placeholder="Date">
+
+              <input type="text" id="age" name="age" placeholder="Age">
               <input type="text" id="weight" name="weight" placeholder="Weight">
               <input type="text" id="height" name="height" placeholder="Height">
-              <input type="text" id="age" name="age" placeholder="Age">
-              <input type="date" id="dob" name="dob" placeholder="Date of Birth">
-            </form>
-
-            <form>
-              <label for="gender">Gender</label>
-              <select id="gender" name="gender">
-                <option value="male">Male</option>
-                <option value="female">Female</option>
-              </select>
-            </form>
-
-            <!-- <form>
-              <legend>Doctor's Information</legend>
-              <input type="text" id="doctorname" name="doctorname" placeholder="Name">
-              <input type="text" id="doctorsurname" name="doctorsurname" placeholder="Surname">
-              <input type="tel" id="doctorphone" name="doctorphone" placeholder="Phone Number">
-              <input type="text" id="doctorhospital" name="doctorhospital" placeholder="Insititution/Hospital">
-            </form> -->
-
-            <form>
-              <legend>Medical History</legend>
-              <input type="text" id="treatment" name="treatment" placeholder="Receiving Treatment Currently">
-              <input type="text" id="medication" name="medication" placeholder="Current Medication">
-              <input type="text" id="allergies" name="allergies" placeholder="Allergies">
-              <input type="text" id="heartconditions" name="heartconditions" placeholder="Heart Conditions">
           
-              <input type="button" class="form-button" value="Submit" onclick="addDataToTable()">
-            </form>
+              <!-- <input type="button" class="form-button" value="Submit" onclick="addDataToTable()"> -->
 
-            <table id="dataTable">
-              <thead>
-                <tr>
-                  <th>Weight</th>
-                  <th>Height</th>
-                  <th>Age</th>
-                  <th>Date Of Birth</th>
-                  <th>Gender</th>
-                  <th>Treatment</th>
-                  <th>Current Medication</th>
-                  <th>Allergies</th>
-                  <th>Heart Conditions</th>
-                </tr>
-              </thead>
-              <tbody>
-              </tbody>
-            </table>
-
-            <form>
-              <input type="date" id="date" name="date" placeholder="Date">
               <input type="text" id="procedure" name="procedure" placeholder="Medical Procedure">
               <input type="text" id="note" name="note" placeholder="Additional Information">
 
-              <input type="button" class="form-button" value="Add" onclick="addRow()">
+              <input type="button" class="form-button" value="Add" id="add-medical-info" onclick="addChildrenMedicalHistoryInDB();">
             </form>
+
             <table id="medicalHistoryTable">
               <thead>
                 <tr>
                   <th>Date</th>
+                  <th>Age</th>
+                  <th>Weight</th>
+                  <th>Height</th>
                   <th>Medical Procedure</th>
-                  <th>Note</th>
+                  <th>Additional Information</th>
                 </tr>
               </thead>
               <tbody>
