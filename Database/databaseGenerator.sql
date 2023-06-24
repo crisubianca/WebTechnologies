@@ -36,9 +36,7 @@ CREATE TABLE feeding_schedule(
     child_id INT(11) NOT NULL,
     date DATE NOT NULL,
     time TIME NOT NULL,
-    food VARCHAR(64) NOT NULL,
-    quantity FLOAT(2) NOT NULL,
-    notes TEXT,
+    information TEXT NOT NULL,
     PRIMARY KEY (id),
     FOREIGN KEY (child_id) REFERENCES children(child_id));
 
@@ -47,8 +45,7 @@ CREATE TABLE sleeping_schedule(
     child_id INT(11) NOT NULL,
     date DATE NOT NULL,
     time TIME NOT NULL,
-    duration FLOAT(2) NOT NULL,
-    notes TEXT,
+    information TEXT NOT NULL,
     PRIMARY KEY (id),
     FOREIGN KEY (child_id) REFERENCES children(child_id));
 

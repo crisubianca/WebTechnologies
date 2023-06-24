@@ -29,8 +29,24 @@ async function generateProfileCards() {
 
     // Add event listener for profile card click
     profileCard.addEventListener("click", () => {
-      redirectToProfilePage(profile.id);
+      redirectToProfilePage(profile.child_id);
     });
+
+    // Function to redirect to profile-specific HTML page
+    function redirectToProfilePage(child_id) {
+      // // Find the profile by ID
+      // const profile = profiles.find((profile) => profile.id === profileId);
+      // if (profile) {
+      //   // Replace 'fsSchedule.html' with your actual profile-specific HTML page
+      //   const profilePageUrl = `fsSchedule.html?name=${encodeURIComponent(
+      //     profile.name
+      //   )}`;
+      // var buttonElement = document.querySelector(".delete-profile-button");
+      // var dataProfileId = document.getAttribute("data-profile-id");
+      
+      console.log("data-profile-id:", child_id);
+      window.location.href = `./fsSchedule?child_id=${child_id}`;
+    }
 
     // Add event listener for delete profile button
     const deleteButton = profileCard.querySelector(".delete-profile-button");
@@ -82,19 +98,6 @@ function updateProfileImage(profileId, imageSrc) {
   if (profile) {
     profile.image = imageSrc;
     generateProfileCards();
-  }
-}
-
-// Function to redirect to profile-specific HTML page
-function redirectToProfilePage(profileId) {
-  // Find the profile by ID
-  const profile = profiles.find((profile) => profile.id === profileId);
-  if (profile) {
-    // Replace 'fsSchedule.html' with your actual profile-specific HTML page
-    const profilePageUrl = `fsSchedule.html?name=${encodeURIComponent(
-      profile.name
-    )}`;
-    window.location.href = profilePageUrl;
   }
 }
 
@@ -174,7 +177,6 @@ gender.input.addEventListener("change", (event) => {
   }
 });
 
-
 function addChildInDB() {
   const childData = {
     firstname: firstname.value,
@@ -182,7 +184,6 @@ function addChildInDB() {
     birthdate: birthdate.value,
     gender: gender.value,
   };
-
 
   fetch("./homePage", {
     method: "POST",
@@ -205,7 +206,7 @@ function addChildInDB() {
       console.log("error");
     });
   modal.style.display = "none";
-  
+
   generateProfileCards();
 }
 // Generate profile cards on page load

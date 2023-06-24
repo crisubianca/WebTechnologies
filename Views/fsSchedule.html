@@ -11,9 +11,9 @@
         <a href="homePage"><img src="logo.png" alt="Logo"></a>
       </div>
       <div class="menu-buttons-container">
-        <a href="fsSchedule" class="button">Feeding and Sleeping Schedule</a>
-        <a href="medicalHistory" class="button">Medical History</a>
-        <a href="timeline" class="button">Timeline</a>
+        <button id="fsSchedule" class="button">Feeding and Sleeping Schedule</button>
+        <button id="medicalHistory" class="button">Medical History</button>
+        <button id="timeline" class="button">Timeline</button>
       </div>
       <div class="dropdown">
         <button class="dropbtn">Settings</button>
@@ -27,7 +27,11 @@
 
     <form>
         <input type="time" id="time" name="time">
-        <input type="text" id="activity" name="activity" placeholder="Activity">
+        <input type="date" id="date" name="date" placeholder="Date">
+        <select id="gender" name="gender">
+          <option value="eat">Eat</option>
+          <option value="sleep">Sleep</option>
+        </select>
         <input type="text" id="info" name="info" placeholder="Information">
       
         <input type="button" class="form-button" value="Add" onclick="addRow()">

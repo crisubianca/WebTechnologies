@@ -257,6 +257,15 @@ const server = http.createServer((req, res) => {
             case "./deleteAccount":
                 controllers.deleteAccountController(req, res);
                 break;
+            case "./fsSchedule":
+                controllers.fsScheduleController(req, res);
+                break;
+            case "./medicalHistory":
+                controllers.medicalHistoryController(req, res);
+                break;
+            case "./timeline":
+                controllers.timelineController(req, res);
+                break;
             default:
                 console.log("ERR!!");
         }

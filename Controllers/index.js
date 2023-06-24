@@ -8,6 +8,9 @@ const { homePageController } = require("./homePage");
 const { logoutController } = require("./logout");
 const { deleteAccountController } = require("./deleteAccount");
 const { showProfilesController } = require("./showProfiles");
+const { fsScheduleController } = require("./fsSchedule");
+const { medicalHistoryController } = require("./medicalHistory"); 
+const { timelineController } = require("./timeline");
 
 module.exports = {
     startPageController,
@@ -20,4 +23,7 @@ module.exports = {
     logoutController,
     deleteAccountController,
     showProfilesController,
+    fsScheduleController,
+    medicalHistoryController,
+    timelineController,
 };

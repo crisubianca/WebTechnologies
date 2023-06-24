@@ -154,7 +154,7 @@ legend {
   font-weight: bold;
 }
 
-input {
+input, select {
   display: block;
   width: 20%;
   padding: 10px;
