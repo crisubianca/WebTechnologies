@@ -207,6 +207,7 @@ function addChildInDB() {
     });
   modal.style.display = "none";
 
+  document.getElementById("modal-form").reset();
   generateProfileCards();
 }
 // Generate profile cards on page load
