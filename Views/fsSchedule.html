@@ -23,18 +23,18 @@
         </div>
       </div>
     </header>
-    <h1 id="profileNameHeader"></h1>
+    <!-- <h1 id="profileNameHeader"></h1> -->
 
     <form>
         <input type="time" id="time" name="time">
         <input type="date" id="date" name="date" placeholder="Date">
-        <select id="gender" name="gender">
+        <select id="activity" name="activity">
           <option value="eat">Eat</option>
           <option value="sleep">Sleep</option>
         </select>
         <input type="text" id="info" name="info" placeholder="Information">
       
-        <input type="button" class="form-button" value="Add" onclick="addRow()">
+        <button onclick="addScheduleInDB();" type="button" id="addSchedule">Add Schedule</button>
       </form>
       <br><br>
       <table id="myTable">

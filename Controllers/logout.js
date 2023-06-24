@@ -1,5 +1,5 @@
 const {auth} = require('../utils');
-const { viewStartPage } = require('../Views/templates');
+const { viewStartPage } = require('../views/templates');
 
 function logoutController(req, res){
     switch(req.method) {

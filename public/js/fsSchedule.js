@@ -19,46 +19,40 @@ timelineButton.addEventListener("click", () => {
     window.location.href = `./timeline?child_id=${childId}`;
 });
 // Update the header with the profile name
-const header = document.getElementById("profileNameHeader");
-header.textContent = profileName;
+// const header = document.getElementById("profileNameHeader");
+// header.textContent = profileName;
 
-function addRow() {
-  // Get values from form inputs
-  var time = document.getElementById("time").value;
-  var activity = document.getElementById("activity").value;
-  var info = document.getElementById("info").value;
+async function getScheduleData() {
+  let fsScheduleEntries = await fetch(
+    `./fsSchedule?child_id=${childId}`
+  );
+  fsScheduleEntries = await fsScheduleEntries.json();
+  return fsScheduleEntries;
+}
 
-  // Get current date in dd:mm:yyyy format
-  var today = new Date();
-  var dd = today.getDate();
-  var mm = today.getMonth() + 1;
-  var yyyy = today.getFullYear();
-  if (dd < 10) dd = "0" + dd;
-  if (mm < 10) mm = "0" + mm;
-  var currentDate = dd + ":" + mm + ":" + yyyy;
 
-  // Insert new row into table
-  var table = document
-    .getElementById("myTable")
-    .getElementsByTagName("tbody")[0];
-  var newRow = table.insertRow();
+async function addRow() {
+  const fsScheduleData = await getScheduleData();
 
-  // Insert cells with form input values and current date
-  var cell1 = newRow.insertCell(0);
-  var cell2 = newRow.insertCell(1);
-  var cell3 = newRow.insertCell(2);
-  var cell4 = newRow.insertCell(3);
-  var cell5 = newRow.insertCell(4);
-  cell1.innerHTML = time;
-  cell2.innerHTML = activity;
-  cell3.innerHTML = info;
-  cell4.innerHTML = currentDate;
-  cell5.innerHTML = '<button onclick="deleteRow(this)">Delete</button>';
+  const table = document.getElementById("myTable");
 
-  // Reset form inputs
-  document.getElementById("time").value = "";
-  document.getElementById("activity").value = "";
-  document.getElementById("info").value = "";
+  fsScheduleData.forEach((data) => {
+    const row = table.insertRow(-1);
+    row.setAttribute("id", data.id);
+    const cell1 = row.insertCell(0);
+    const cell2 = row.insertCell(1);
+    const cell3 = row.insertCell(2);
+    const cell4 = row.insertCell(3);
+    const cell5 = row.insertCell(4);
+    const cell6 = row.insertCell(5);
+
+    cell1.innerHTML = data.time;
+    cell2.innerHTML = data.activity;
+    cell3.innerHTML = data.info;
+    cell4.innerHTML = data.date;
+    cell5.innerHTML = data.currentDate;
+    cell6.innerHTML = '<button onclick="deleteRow(this)">Delete</button>';
+  })
 }
 
 function deleteRow(btn) {
@@ -69,25 +63,74 @@ function deleteRow(btn) {
   row.parentNode.removeChild(row);
 }
 
-// function deleteRow(button) {
-//     // Get the row to be deleted
-//     const row = button.parentNode.parentNode;
+const time = document.getElementById("time");
+const date = document.getElementById("date");
+const activity = document.getElementById("activity");
+const info = document.getElementById("info");
 
-//     // Remove the row from the table
-//     const tableBody = document.querySelector("#myTable tbody");
-//     tableBody.removeChild(row);
+formInputs = [time, date, activity, info];
 
-//     // Remove the data from the array
-//     const rowIndex = row.rowIndex - 1;
-//     tableData.splice(rowIndex, 1);
+const isRequired = (value) => (value === "" ? false : true);
 
-//     // Remove the data from the history table
-//     const historyTable = document.querySelector("#historyTable tbody");
-//     const historyRow = historyTable.childNodes[rowIndex];
-//     historyTable.removeChild(historyRow);
+time.input.addEventListener("input", () => {
+  if (isRequired(time.input.value.trim())) {
+    time.input.style.outlineColor = "hsl(145, 63%, 40%)";
+  } else {
+    time.input.style.outlineColor = "hsl(0, 100%, 34%)";
+  }
+});
 
-// }
+date.input.addEventListener("input", () => {
+  if (isRequired(date.input.value.trim())) {
+    date.input.style.outlineColor = "hsl(145, 63%, 40%)";
+  } else {
+    date.input.style.outlineColor = "hsl(0, 100%, 34%)";
+  }
+});
 
-// function showHistory() {
-//     window.location.href = "history.html";
-// }
+activity.input.addEventListener("change", (event) => {
+  const selectedActivity = event.target.value;
+  if (isRequired(selectedActivity)) {
+    activity.input.style.outlineColor = "hsl(145, 63%, 40%)";
+  } else {
+    activity.input.style.outlineColor = "hsl(0, 100%, 34%)";
+  }
+});
+
+info.input.addEventListener("input", () => {
+  if (isRequired(info.input.value.trim())) {
+    info.input.style.outlineColor = "hsl(145, 63%, 40%)";
+  } else {
+    info.input.style.outlineColor = "hsl(0, 100%, 34%)";
+  }
+});
+
+function addScheduleInDB() {
+  const scheduleData = {
+    time: time.value,
+    date: date.value,
+    activity: activity.value,
+    information: info.value,
+    child_id: childId,
+  }
+
+  fetch("./fsSchedule", {
+    method: "POST",
+    mode: "cors",
+    headers: {"Content-Type": "application/json",},
+    body: JSON.stringify(scheduleData),
+  })
+    .then((res) => {
+      console.log(res);
+      if (res.status == 200) {
+        console.log("succes");
+      } else if (res.status == 401) {
+        console.log("bad request");
+      }
+    })
+    .catch((err) => {
+      console.log("error");
+    });
+
+    // addRow();
+}
