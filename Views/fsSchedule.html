@@ -5,7 +5,7 @@
     <title>Home Page</title>
     <link rel="stylesheet" href="./public/css/fsScheduleStyle.css">
   </head>
-  <body>
+  <body onload="addRow();">
     <header class="box-shadow">
       <div class="logo-container">
         <a href="homePage"><img src="logo.png" alt="Logo"></a>
@@ -25,7 +25,7 @@
     </header>
     <!-- <h1 id="profileNameHeader"></h1> -->
 
-    <form>
+    <form id="details">
         <input type="time" id="time" name="time">
         <input type="date" id="date" name="date" placeholder="Date">
         <select id="activity" name="activity">

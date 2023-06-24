@@ -24,7 +24,49 @@ function createEat(schedule) {
     })
 }
 
+function getSleepByChildId(child_id) {
+    let query = "SELECT * FROM sleeping_schedule WHERE child_id = ? ORDER BY date, time";
+    return new Promise((resolve, reject) => {
+        database.promise().query(query, child_id)
+        .then((results) => {
+            resolve(results[0]);
+        })
+        .catch((error) => {
+            reject(error);
+        });
+    })
+}
+
+function getFoodByChildId(child_id) {
+    let query = "SELECT * FROM feeding_schedule WHERE child_id = ? ORDER BY date, time";
+    return new Promise((resolve, reject) => {
+        database.promise().query(query, child_id)
+        .then((results) => {
+            resolve(results[0]);
+        })
+        .catch((error) => {
+            reject(error);
+        });
+    })
+}
+
+function getAllByChildId(child_id) {
+    let query = " SELECT 'sleeping_schedule' AS source, date, time, information FROM sleeping_schedule WHERE child_id = ? UNION SELECT 'feeding_schedule' AS source, date, time, information FROM feeding_schedule WHERE child_id = ?";
+    return new Promise((resolve, reject) => {
+        database.promise().query(query, child_id)
+        .then((results) => {
+            resolve(results[0]);
+        })
+        .catch((error) => {
+            reject(error);
+        });
+    })
+}
+
 module.exports = {
     createSleep,
     createEat,
+    getSleepByChildId,
+    getFoodByChildId,
+    getAllByChildId,
 }

@@ -12,6 +12,7 @@ const { fsScheduleController } = require("./fsSchedule");
 const { medicalHistoryController } = require("./medicalHistory"); 
 const { timelineController } = require("./timeline");
 const { showMedicalHistoryController } = require("./showMedicalHistory");
+const { showScheduleController } = require("./showSchedule");
 
 module.exports = {
     startPageController,
@@ -28,4 +29,5 @@ module.exports = {
     medicalHistoryController,
     timelineController,
     showMedicalHistoryController,
+    showScheduleController,
 };

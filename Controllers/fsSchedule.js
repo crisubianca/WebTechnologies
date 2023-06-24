@@ -43,8 +43,9 @@ async function fsSchedule(req, res) {
       time,
       information,
     };
-    console.log("sunt aici");
-    if(activity === "Eat"){
+    // console.log("activity", activity);
+    if(activity === "eat"){
+      // console.log("sunt aici");
       scheduleRepository
         .createEat(schedule)
         .then((data) => {

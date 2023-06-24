@@ -18,50 +18,6 @@ medicalHistoryButton.addEventListener("click", () => {
 timelineButton.addEventListener("click", () => {
     window.location.href = `./timeline?child_id=${childId}`;
 });
-// Update the header with the profile name
-// const header = document.getElementById("profileNameHeader");
-// header.textContent = profileName;
-
-async function getScheduleData() {
-  let fsScheduleEntries = await fetch(
-    `./fsSchedule?child_id=${childId}`
-  );
-  fsScheduleEntries = await fsScheduleEntries.json();
-  return fsScheduleEntries;
-}
-
-
-async function addRow() {
-  const fsScheduleData = await getScheduleData();
-
-  const table = document.getElementById("myTable");
-
-  fsScheduleData.forEach((data) => {
-    const row = table.insertRow(-1);
-    row.setAttribute("id", data.id);
-    const cell1 = row.insertCell(0);
-    const cell2 = row.insertCell(1);
-    const cell3 = row.insertCell(2);
-    const cell4 = row.insertCell(3);
-    const cell5 = row.insertCell(4);
-    const cell6 = row.insertCell(5);
-
-    cell1.innerHTML = data.time;
-    cell2.innerHTML = data.activity;
-    cell3.innerHTML = data.info;
-    cell4.innerHTML = data.date;
-    cell5.innerHTML = data.currentDate;
-    cell6.innerHTML = '<button onclick="deleteRow(this)">Delete</button>';
-  })
-}
-
-function deleteRow(btn) {
-  // Get the row to be deleted
-  var row = btn.parentNode.parentNode;
-
-  // Remove the row from the table
-  row.parentNode.removeChild(row);
-}
 
 const time = document.getElementById("time");
 const date = document.getElementById("date");
@@ -132,5 +88,46 @@ function addScheduleInDB() {
       console.log("error");
     });
 
-    // addRow();
+  document.getElementById("details").reset();
+  location.reload();
+}
+
+async function getScheduleData() {
+  let fsScheduleEntries = await fetch(
+    `./fsSchedule?child_id=${childId}`
+  );
+  fsScheduleEntries = await fsScheduleEntries.json();
+  console.log("fsSchedule: ", fsScheduleEntries);
+  return fsScheduleEntries;
+}
+
+function deleteRow(btn) {
+  var row = btn.parentNode.parentNode.rowIndex;
+  var entryToDelete = document.getElementsByTagName("tr")[row].id;
+  console.log(entryToDelete);
+  document.getElementById("myTable").deleteRow(row);
+}
+
+async function addRow() {
+  const fsScheduleData = await getScheduleData();
+
+  const table = document.getElementById("myTable");
+
+  fsScheduleData.forEach((data) => {
+    const row = table.insertRow(-1);
+    row.setAttribute("id", data.id);
+    const cell1 = row.insertCell(0);
+    const cell2 = row.insertCell(1);
+    const cell3 = row.insertCell(2);
+    const cell4 = row.insertCell(3);
+    const cell5 = row.insertCell(4);
+    const cell6 = row.insertCell(5);
+
+    cell1.innerHTML = data.time;
+    cell2.innerHTML = data.activity;
+    cell3.innerHTML = data.info;
+    cell4.innerHTML = data.date.substring(0, 10);;
+    cell5.innerHTML = data.currentDate;
+    cell6.innerHTML = '<button onclick="deleteRow(this)">Delete</button>';
+  })
 }
