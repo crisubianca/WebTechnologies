@@ -1,8 +1,8 @@
 const { auth } = require("../utils");
-const medicalHistoryRepository = require("../Models/medicalHistoryRepository");
+const timelineRepository = require("../Models/timelineRepository");
 const mime = require("mime");
 
-async function showMedicalHistoryController(req, res) {
+async function showTimelineController(req, res) {
   let user = auth(req, res);
   if (!user) {
     console.log("user is not authorized");
@@ -11,7 +11,7 @@ async function showMedicalHistoryController(req, res) {
   } else {
     switch (req.method) {
       case "GET":
-        showMedicalHistory(req, res);
+        showTimeline(req, res);
         break;
       default:
         res.writeHead(405);
@@ -20,12 +20,12 @@ async function showMedicalHistoryController(req, res) {
   }
 }
 
-async function showMedicalHistory(req, res) {
+async function showTimeline(req, res) {
 
     const childId = req.url.split("=")[1];
     console.log("childId", childId);
   try {
-    medicalHistoryRepository
+    timelineRepository
       .getAllByChildId(childId)
       .then((childData) => {
         // console.log("Child data", childData);
@@ -43,5 +43,5 @@ async function showMedicalHistory(req, res) {
 }
 
 module.exports = {
-    showMedicalHistoryController,
+    showTimeline,
 };

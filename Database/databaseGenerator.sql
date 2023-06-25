@@ -23,11 +23,11 @@ CREATE TABLE relations(
     FOREIGN KEY (child_id_1) REFERENCES children(child_id),
     FOREIGN KEY (child_id_2) REFERENCES children(child_id));
 
-CREATE TABLE media(
+CREATE TABLE timeline(
     id INT AUTO_INCREMENT PRIMARY KEY,
-    filename VARCHAR(128) NOT NULL,
-    type VARCHAR(64) NOT NULL,
-    caption VARCHAR(512),
+    date DATE NOT NULL,
+    timeline_title VARCHAR(50) NOT NULL,
+    timeline_info VARCHAR(512) NOT NULL,
     child_id INT NOT NULL,
     FOREIGN KEY (child_id) REFERENCES children(child_id));
 

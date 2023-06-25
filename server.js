@@ -63,6 +63,9 @@ const server = http.createServer((req, res) => {
             case "./showSchedule":
                 controllers.showScheduleController(req, res);
                 break;  
+            case "./showTimeline":
+                controllers.showTimeline(req, res);
+                break;
             default:
                 console.log("ERR!!");
         }

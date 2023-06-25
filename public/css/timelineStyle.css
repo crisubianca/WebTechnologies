@@ -9,128 +9,234 @@ a {
 }
 
 html {
-    height: 100%;
-    width: 100%;
-  }
-  
-  body {
-    background-color: #fcf9ea;
-    color: #333333;
-    font-family: Arial, sans-serif;
-    font-size: 16px;
-    line-height: 1.5;
-    height: 100%;
-    /* overflow: hidden; */
-    padding: 0;
-  }
-  
-  header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px;
-    background-color: #fcf9ea;
-    color: #fcf9ea;
-  }
-  
-  .box-shadow {
-    box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.1);
-  }
-  .logo-container img {
-    height: 70px;
-    vertical-align: middle;
-  }
-  
-  .menu-buttons-container {
-    position:absolute;
-    display:block;
-    top: 41px;
-    right: 125px;
-  }
-  
-  .button {
-    font-size: 16px;
-    font-weight: bold;
-    color: #fcf9ea;
-    background-color: #badfdb;
-    border: none;
-    border-radius: 5px;
-    padding: 10px 20px;
-    margin-right: 10px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .button:hover {
-    background-color: #ffc5a1;
-  }
-  
-  .menu-buttons-container:hover {
-    display: block;
-  }
-  
-  .dropbtn {
-    font-size: 16px;
-    font-weight: bold;
-    color: #FCF9EA;
-    background-color: #BADFDB;
-    border: none;
-    border-radius: 5px;
-    padding: 10px 20px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
+  height: 100%;
+  width: 100%;
+}
 
-   .dropdown {
-    position: relative;
-    display: inline-block;
-  }
-  
-  .dropbtn:hover {
-    background-color: #FFC5A1;
-  }
-  
-  .dropdown-content {
-    display: none;
-    position: absolute;
-    /* top: 60px; */
-    right: 0;
-    background-color: #FCF9EA;
-    min-width: 160px;
-    /* padding: 10px; */
-    z-index: 1;
-    border: 1px solid #F8A978;
-    border-radius: 5px;
-  }
-  
-  .dropdown-content a {
-    color:#BADFDB;
-    font-family: Arial, sans-serif;
-    font-weight: bold;
-    font-size: 16px;
-    display: block;
-    padding: 10px 20px;
-    text-decoration: none;
-    transition: background-color 0.3s ease;
-  }
-  
-  .dropdown-content a:hover {
-    background-color: #F8A978;
-    color: #FCF9EA;
-  }
-  
-  .dropdown:hover .dropdown-content {
-    display: block;
-  }
-  
-  .dropdown:hover .dropbtn {
-    background-color: #FFC5A1;
-  }
+body {
+  background-color: #fcf9ea;
+  color: #333333;
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  height: 100%;
+  /* overflow: hidden; */
+  padding: 0;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background-color: #fcf9ea;
+  color: #fcf9ea;
+}
+
+.box-shadow {
+  box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.1);
+}
+
+.logo-container img {
+  height: 70px;
+  vertical-align: middle;
+}
+
+.menu-buttons-container {
+  position: absolute;
+  display: block;
+  top: 41px;
+  right: 125px;
+}
+
+.buttonContainer {
+  height: 100px;
+  position: relative;
+}
+
+
+#addTimelineButton {
+  font-size: 16px;
+  font-weight: bold;
+  color: #FCF9EA;
+  background-color: #FFC5A1;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 30px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+#addTimeline {
+  font-size: 16px;
+  font-weight: bold;
+  color: #FCF9EA;
+  background-color: #FFC5A1;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  /* margin-top: 30px; */
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+#addTimelineButton:hover,
+#addTimeline:hover {
+  background-color: #BADFDB;
+}
+
+/* The Modal (background) */
+.modal {
+  display: none;
+  /* Hidden by default */
+  position: fixed;
+  /* Stay in place */
+  z-index: 10;
+  /* Sit on top */
+  padding-top: 100px;
+  /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%;
+  /* Full width */
+  height: 100%;
+  /* Full height */
+  overflow: auto;
+  /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0);
+  /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4);
+  /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: #FCF9EA;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 50%;
+  height: 40%;
+}
+
+/* The Close Button */
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  margin-top: -5px;
+  margin-right: -5px;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+input {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  font-size: 18px;
+  border-radius: 5px;
+  border: 2px solid #BADFDB;
+}
+
+.button {
+  font-size: 16px;
+  font-weight: bold;
+  color: #FCF9EA;
+  background-color: #BADFDB;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  margin-right: 35px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+
+.button:hover {
+  background-color: #FFC5A1;
+}
+
+.menu-buttons-container:hover {
+  display: block;
+}
+
+.dropbtn {
+  font-size: 16px;
+  font-weight: bold;
+  color: #FCF9EA;
+  background-color: #BADFDB;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropbtn:hover {
+  background-color: #FFC5A1;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  /* top: 60px; */
+  right: 0;
+  background-color: #FCF9EA;
+  min-width: 160px;
+  /* padding: 10px; */
+  z-index: 1;
+  border: 1px solid #F8A978;
+  border-radius: 5px;
+}
+
+.dropdown-content a {
+  color: #BADFDB;
+  font-family: Arial, sans-serif;
+  font-weight: bold;
+  font-size: 16px;
+  display: block;
+  padding: 10px 20px;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.dropdown-content a:hover {
+  background-color: #F8A978;
+  color: #FCF9EA;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown:hover .dropbtn {
+  background-color: #FFC5A1;
+}
 
 .timeline {
   position: relative;
   width: 100%;
-  max-width:fit-content;
+  max-width: fit-content;
   min-width: 75%;
   margin: 0 auto;
   padding: 15px 0;
@@ -154,11 +260,11 @@ html {
   width: 50%;
 }
 
-.container.left {
+.container-left {
   left: 0;
 }
 
-.container.right {
+.container-right {
   left: 50%;
 }
 
@@ -175,7 +281,7 @@ html {
   z-index: 4;
 }
 
-.container.right::after {
+.container-right::after {
   left: -8px;
 }
 
@@ -190,7 +296,7 @@ html {
   z-index: 4;
 }
 
-.container.right::before {
+.container-right::before {
   left: 8px;
 }
 
@@ -207,11 +313,11 @@ html {
   z-index: 4;
 }
 
-.container.left .date {
+.container-left .date {
   right: -75px;
 }
 
-.container.right .date {
+.container-right .date {
   left: -75px;
 }
 
@@ -221,15 +327,15 @@ html {
   background: #BADFDB;
   position: relative;
   border-radius: 0 500px 500px 0;
-  
+
 }
 
 .container .content:hover {
   background-color: #ffc5a1;
-  
+
 }
 
-.container.right .content {
+.container-right .content {
   padding: 30px 30px 30px 90px;
   border-radius: 500px 0 0 500px;
 }
@@ -259,35 +365,35 @@ html {
     padding-right: 30px;
   }
 
-  .container.right {
+  .container-right {
     left: 0%;
   }
 
-  .container.left::after, 
-  .container.right::after {
+  .container-left::after,
+  .container-right::after {
     left: 82px;
   }
 
-  .container.left::before,
-  .container.right::before {
+  .container-left::before,
+  .container-right::before {
     left: 100px;
     border-color: transparent #006E51 transparent transparent;
   }
 
-  .container.left .date,
-  .container.right .date {
+  .container-left .date,
+  .container-right .date {
     right: auto;
     left: 15px;
   }
 
-  .container.left .icon,
-  .container.right .icon {
+  .container-left .icon,
+  .container-right .icon {
     right: auto;
     left: 146px;
   }
 
-  .container.left .content,
-  .container.right .content {
+  .container-left .content,
+  .container-right .content {
     padding: 30px 30px 30px 90px;
     border-radius: 500px 0 0 500px;
   }

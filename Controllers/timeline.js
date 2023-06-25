@@ -1,8 +1,7 @@
 const { viewTimeline } = require("../views/templates");
 const { auth } = require("../utils");
 const { getPostData } = require("../utils");
-const childRepository = require("../Models/childRepository");
-const userRepository = require("../Models/userRepository");
+const timelineRepository = require("../Models/timelineRepository");
 const bcrypt = require("bcrypt");
 const mime = require("mime");
 const jwt = require("jsonwebtoken");
@@ -18,6 +17,9 @@ async function timelineController(req, res) {
       case "GET":
         res.end(viewTimeline, "utf8");
         break;
+      case "POST":
+        timeline(req, res);
+        break;
       default:
         res.writeHead(405);
         res.end();
@@ -25,6 +27,30 @@ async function timelineController(req, res) {
   }
 }
 
+async function timeline(req, res) {
+  const body = await getPostData(req);
+  console.log(body);
+  const { child_id, date, timelineTitle, timelineInfo } = body;
+
+  const entry = {
+    child_id,
+    date,
+    timelineTitle,
+    timelineInfo,
+  };
+  console.log("entry", entry);
+  timelineRepository
+    .create(entry)
+    .then((data) => {
+      console.log(data);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.writeHead(401, { "Content-Type": mime.getType(".txt") });
+      res.end("child doesn't exist");
+    });
+}
+
 module.exports = {
-    timelineController,
+  timelineController,
 };

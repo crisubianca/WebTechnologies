@@ -6,27 +6,49 @@
     <title>Baby Info Manager</title>
     <link rel="stylesheet" type="text/css" href="./public/css/timelineStyle.css">
 </head>
-<body>
+<body onload="addDataToTimeline();">
     <header class="box-shadow">
         <div class="logo-container">
           <a href="./Views/homePage.html"><img src="./public/images/logo.png" alt="Logo"></a>
         </div>
         <div class="menu-buttons-container">
-          <a href="fsSchedule.html" class="button">Feeding and Sleeping Schedule</a>
-          <a href="medicalHistory.html" class="button">Medical History</a>
-          <a href="timeline.html" class="button">Timeline</a>
+          <a id="fsSchedule" class="button">Feeding and Sleeping Schedule</a>
+          <a id="medicalHistory" class="button">Medical History</a>
+          <a id="timelineHeader" class="button">Timeline</a>
         </div>
         <div class="dropdown">
           <button class="dropbtn">Settings</button>
           <div class="dropdown-content">
-            <a href="index.html">Logout</a>
-            <a href="index.html">Delete Account</a>
+            <a href="logout">Logout</a>
+            <a href="deleteAccount">Delete Account</a>
           </div>
         </div>
       </header>
       <h1 id="profileNameHeader"></h1>
-    <div class="timeline">
-        <div class="container left">
+
+      <div class="buttonContainer">
+        <button id="addTimelineButton">Add Timeline</button>
+      </div>
+
+       <!-- The Modal -->
+       <div id="timelineModal" class="modal">
+
+        <!-- Modal content -->
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <form id="modal-form">
+            <input type="date" id="date" name="date"  required>   
+            <input type="text" id="timeline-title" name="timeline-title" placeholder="Timeline Title" required>
+            <input type="text" id="timeline-info" name="timeline-info" placeholder="Timeline Info" required>
+        
+            <button class="button" type="button" id="addTimeline" onclick="addTimelineEntryInDB();">Add Timeline</button>
+        </form>
+        </div>
+
+      </div>
+    
+    <div id="timeline" class="timeline">
+        <!-- <div class="container left">
           <div class="date">01 Jan</div>
           <div class="content">
             <h2>First day of the year</h2>
@@ -75,7 +97,10 @@
             <h2>1st year birthday celebration</h2>
             <img width="160" height="120" src="image3.jpg" alt="My Image">
           </div>
-        </div>
+        </div> -->
     </div>
+
+    <script src="../public/js/timeline.js"></script>
+
 </body>
 </html>
