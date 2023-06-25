@@ -51,7 +51,8 @@ function getFoodByChildId(child_id) {
 }
 
 function getAllByChildId(child_id) {
-    let query = " SELECT 'sleeping_schedule' AS source, date, time, information FROM sleeping_schedule WHERE child_id = ? UNION SELECT 'feeding_schedule' AS source, date, time, information FROM feeding_schedule WHERE child_id = ?";
+    // let query = " SELECT 'sleeping_schedule' AS source, date, time, information FROM sleeping_schedule WHERE child_id = ? UNION SELECT 'feeding_schedule' AS source, date, time, information FROM feeding_schedule WHERE child_id = ?";
+    let query = "select * from feeding_schedule join sleeping_schedule on feeding_schedule.child_id = sleeping_schedule.child_id where child_id = ?";
     return new Promise((resolve, reject) => {
         database.promise().query(query, child_id)
         .then((results) => {

@@ -26,38 +26,40 @@ const info = document.getElementById("info");
 
 formInputs = [time, date, activity, info];
 
+console.log("Time: ", time);
 const isRequired = (value) => (value === "" ? false : true);
 
-time.input.addEventListener("input", () => {
-  if (isRequired(time.input.value.trim())) {
-    time.input.style.outlineColor = "hsl(145, 63%, 40%)";
+time.addEventListener("input", () => {
+  if (isRequired(time.value.trim())) {
+    time.style.outlineColor = "hsl(145, 63%, 40%)";
   } else {
-    time.input.style.outlineColor = "hsl(0, 100%, 34%)";
+    time.style.outlineColor = "hsl(0, 100%, 34%)";
   }
 });
 
-date.input.addEventListener("input", () => {
-  if (isRequired(date.input.value.trim())) {
-    date.input.style.outlineColor = "hsl(145, 63%, 40%)";
+
+date.addEventListener("input", () => {
+  if (isRequired(date.value.trim())) {
+    date.style.outlineColor = "hsl(145, 63%, 40%)";
   } else {
-    date.input.style.outlineColor = "hsl(0, 100%, 34%)";
+    date.style.outlineColor = "hsl(0, 100%, 34%)";
   }
 });
 
-activity.input.addEventListener("change", (event) => {
+activity.addEventListener("change", (event) => {
   const selectedActivity = event.target.value;
   if (isRequired(selectedActivity)) {
-    activity.input.style.outlineColor = "hsl(145, 63%, 40%)";
+    activity.style.outlineColor = "hsl(145, 63%, 40%)";
   } else {
-    activity.input.style.outlineColor = "hsl(0, 100%, 34%)";
+    activity.style.outlineColor = "hsl(0, 100%, 34%)";
   }
 });
 
-info.input.addEventListener("input", () => {
-  if (isRequired(info.input.value.trim())) {
-    info.input.style.outlineColor = "hsl(145, 63%, 40%)";
+info.addEventListener("input", () => {
+  if (isRequired(info.value.trim())) {
+    info.style.outlineColor = "hsl(145, 63%, 40%)";
   } else {
-    info.input.style.outlineColor = "hsl(0, 100%, 34%)";
+    info.style.outlineColor = "hsl(0, 100%, 34%)";
   }
 });
 
@@ -109,6 +111,7 @@ function deleteRow(btn) {
 }
 
 async function addRow() {
+  console.log("SUNT AICI");
   const fsScheduleData = await getScheduleData();
 
   const table = document.getElementById("myTable");
