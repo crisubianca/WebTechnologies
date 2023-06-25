@@ -64,6 +64,11 @@ header {
   background-color: #ffc5a1;
 }
 
+#save-table {
+  margin-left: 190px;
+  margin-bottom: 10px;
+}
+
 .menu-buttons-container:hover {
   display: block;
 }
