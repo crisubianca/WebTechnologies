@@ -1,6 +1,27 @@
 // Sample profile data
 // let profiles = [{ id: 1, name: "{Kids Name}", image: "logo.png" }];
 
+function deleteChildProfile(childId) {
+  fetch(`./deleteChildProfile?child_id=${childId}`, {
+    method: "DELETE",
+  })
+    .then((res) => {
+      console.log(res);
+      if (res.status == 200) {
+        console.log("succes");
+        window.location.href = "./homePage";
+      } else if (res.status == 401) {
+        console.log("bad request");
+      }
+    })
+    .catch((err) => {
+      console.log("error");
+    });
+  modal.style.display = "none";
+
+  generateProfileCards();
+}
+
 async function getChildrenData() {
   let profiles = await fetch("./showProfiles");
   profiles = await profiles.json();
@@ -31,18 +52,9 @@ async function generateProfileCards() {
     profileCard.addEventListener("click", () => {
       redirectToProfilePage(profile.child_id);
     });
-
+    
     // Function to redirect to profile-specific HTML page
     function redirectToProfilePage(child_id) {
-      // // Find the profile by ID
-      // const profile = profiles.find((profile) => profile.id === profileId);
-      // if (profile) {
-      //   // Replace 'fsSchedule.html' with your actual profile-specific HTML page
-      //   const profilePageUrl = `fsSchedule.html?name=${encodeURIComponent(
-      //     profile.name
-      //   )}`;
-      // var buttonElement = document.querySelector(".delete-profile-button");
-      // var dataProfileId = document.getAttribute("data-profile-id");
       
       console.log("data-profile-id:", child_id);
       window.location.href = `./fsSchedule?child_id=${child_id}`;
@@ -53,24 +65,24 @@ async function generateProfileCards() {
     deleteButton.addEventListener("click", (event) => {
       event.stopPropagation();
       const profileId = parseInt(deleteButton.dataset.profileId);
-      deleteProfile(profileId);
+      console.log("deleteprofileid", profileId);
+      deleteChildProfile(profileId);
     });
 
     // Add event listener for upload image button
-    const uploadButton = profileCard.querySelector(".upload-image-button");
-    uploadButton.addEventListener("click", (event) => {
-      event.stopPropagation();
-      const profileId = parseInt(uploadButton.dataset.profileId);
-      handleImageUpload(profileId);
-    });
+    // const uploadButton = profileCard.querySelector(".upload-image-button");
+    // uploadButton.addEventListener("click", (event) => {
+    //   event.stopPropagation();
+    //   const profileId = parseInt(uploadButton.dataset.profileId);
+    //   handleImageUpload(profileId);
+    // });
 
     profileList.appendChild(profileCard);
   });
 }
 
 // Function to delete a profile
-function deleteProfile(profileId) {
-  profiles = profiles.filter((profile) => profile.id !== profileId);
+function deleteProfile() {
   generateProfileCards();
 }
 

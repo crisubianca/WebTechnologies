@@ -192,8 +192,12 @@ html {
   border: 1px solid #ccc;
   border-radius: 5px;
   cursor: pointer;
+  z-index: 2;
 }
 
+#delete-profile-button{
+  z-index: 10;
+}
 .profile-card img {
   width: 150px;
   height: 90px;

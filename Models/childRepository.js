@@ -56,7 +56,7 @@ function deleteByParentId(id) {
 }
 
 function deleteById(id) {
-    let queryText = "delete from users where id = ?";
+    let queryText = "delete from children where child_id = ?";
     return new Promise((resolve, reject) => {
         database.promise().query(queryText, [id])
         .then((results) => {

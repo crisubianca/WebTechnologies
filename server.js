@@ -64,7 +64,10 @@ const server = http.createServer((req, res) => {
                 controllers.showScheduleController(req, res);
                 break;  
             case "./showTimeline":
-                controllers.showTimeline(req, res);
+                controllers.showTimelineController(req, res);
+                break;
+            case "./deleteChildProfile":
+                controllers.deleteChildProfileController(req, res);
                 break;
             default:
                 console.log("ERR!!");

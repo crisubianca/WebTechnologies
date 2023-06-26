@@ -43,5 +43,5 @@ async function showTimeline(req, res) {
 }
 
 module.exports = {
-    showTimeline,
+    showTimelineController,
 };
