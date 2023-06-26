@@ -17,7 +17,6 @@ function deleteChildProfile(childId) {
     .catch((err) => {
       console.log("error");
     });
-  modal.style.display = "none";
 
   generateProfileCards();
 }

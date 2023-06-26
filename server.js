@@ -69,6 +69,9 @@ const server = http.createServer((req, res) => {
             case "./deleteChildProfile":
                 controllers.deleteChildProfileController(req, res);
                 break;
+            case "./deleteMedicalHistoryEntry":
+                controllers.deleteMedicalHistoryEntryController(req, res);
+                break;
             default:
                 console.log("ERR!!");
         }

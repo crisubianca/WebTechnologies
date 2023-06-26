@@ -141,10 +141,30 @@ async function getMedicalHistoryData() {
   return medicalHistoryEntries;
 }
 
+function deleteMedicalHistoryEntry(id) {
+  fetch(`./deleteMedicalHistoryEntry?id=${id}`, {
+    method: "DELETE",
+  })
+    .then((res) => {
+      console.log(res);
+      if (res.status == 200) {
+        console.log("succes");
+        window.location.href = "./homePage";
+      } else if (res.status == 401) {
+        console.log("bad request");
+      }
+    })
+    .catch((err) => {
+      console.log("error");
+    });
+
+}
+
 function deleteRow(btn) {
   var row = btn.parentNode.parentNode.rowIndex;
   var entryToDelete = document.getElementsByTagName("tr")[row].id;
-  console.log(entryToDelete);
+  console.log("entry to delete", entryToDelete);
+  deleteMedicalHistoryEntry(entryToDelete);
   document.getElementById("medicalHistoryTable").deleteRow(row);
 }
 
