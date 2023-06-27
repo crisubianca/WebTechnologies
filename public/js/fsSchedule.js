@@ -26,7 +26,7 @@ const info = document.getElementById("info");
 
 formInputs = [time, date, activity, info];
 
-console.log("Time: ", time);
+// console.log("Time: ", time);
 const isRequired = (value) => (value === "" ? false : true);
 
 time.addEventListener("input", () => {
@@ -111,7 +111,7 @@ function deleteRow(btn) {
 }
 
 async function addRow() {
-  console.log("SUNT AICI");
+  // console.log("SUNT AICI");
   const fsScheduleData = await getScheduleData();
 
   const table = document.getElementById("myTable");
