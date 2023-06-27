@@ -45,52 +45,52 @@ formInputs = [date, weight, height, procedure, note];
 
 const isRequired = (value) => (value === "" ? false : true);
 
-date.input.addEventListener("input", (event) => {
+date.addEventListener("input", (event) => {
   const selectedDate = event.target.value;
   if (isRequired(selectedDate)) {
-    date.input.style.outlineColor = "hsl(145, 63%, 40%)";
+    date.style.outlineColor = "hsl(145, 63%, 40%)";
   } else {
-    date.input.style.outlineColor = "hsl(0, 100%, 34%)";
+    date.style.outlineColor = "hsl(0, 100%, 34%)";
   }
 });
 
-age.input.addEventListener("input", () => {
-  if (isRequired(age.input.value.trim())) {
-    age.input.style.outlineColor = "hsl(145, 63%, 40%)";
+age.addEventListener("input", () => {
+  if (isRequired(age.value.trim())) {
+    age.style.outlineColor = "hsl(145, 63%, 40%)";
   } else {
-    age.input.style.outlineColor = "hsl(0, 100%, 34%)";
+    age.style.outlineColor = "hsl(0, 100%, 34%)";
   }
 });
 
-weight.input.addEventListener("input", () => {
-  if (isRequired(weight.input.value.trim())) {
-    weight.input.style.outlineColor = "hsl(145, 63%, 40%)";
+weight.addEventListener("input", () => {
+  if (isRequired(weight.value.trim())) {
+    weight.style.outlineColor = "hsl(145, 63%, 40%)";
   } else {
-    weight.input.style.outlineColor = "hsl(0, 100%, 34%)";
+    weight.style.outlineColor = "hsl(0, 100%, 34%)";
   }
 });
 
-height.input.addEventListener("input", () => {
-  if (isRequired(height.input.value.trim())) {
-    height.input.style.outlineColor = "hsl(145, 63%, 40%)";
+height.addEventListener("input", () => {
+  if (isRequired(height.value.trim())) {
+    height.style.outlineColor = "hsl(145, 63%, 40%)";
   } else {
-    height.input.style.outlineColor = "hsl(0, 100%, 34%)";
+    height.style.outlineColor = "hsl(0, 100%, 34%)";
   }
 });
 
-procedure.input.addEventListener("input", () => {
-  if (isRequired(procedure.input.value.trim())) {
-    procedure.input.style.outlineColor = "hsl(145, 63%, 40%)";
+procedure.addEventListener("input", () => {
+  if (isRequired(procedure.value.trim())) {
+    procedure.style.outlineColor = "hsl(145, 63%, 40%)";
   } else {
-    procedure.input.style.outlineColor = "hsl(0, 100%, 34%)";
+    procedure.style.outlineColor = "hsl(0, 100%, 34%)";
   }
 });
 
-note.input.addEventListener("input", () => {
-  if (isRequired(note.input.value.trim())) {
-    note.input.style.outlineColor = "hsl(145, 63%, 40%)";
+note.addEventListener("input", () => {
+  if (isRequired(note.value.trim())) {
+    note.style.outlineColor = "hsl(145, 63%, 40%)";
   } else {
-    note.input.style.outlineColor = "hsl(0, 100%, 34%)";
+    note.style.outlineColor = "hsl(0, 100%, 34%)";
   }
 });
 
@@ -186,8 +186,8 @@ async function addDataToTable() {
 
     cell1.innerHTML = data.date.substring(0, 10);
     cell2.innerHTML = data.age;
-    cell3.innerHTML = data.weight;
-    cell4.innerHTML = data.height;
+    cell3.innerHTML = `${data.weight} kg`;
+    cell4.innerHTML = `${data.height} cm`;
     cell5.innerHTML = data.medical_procedure;
     cell6.innerHTML = data.additional_information;
     cell7.innerHTML = '<button onclick="deleteRow(this)">Delete</button>';

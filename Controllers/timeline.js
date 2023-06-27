@@ -2,9 +2,7 @@ const { viewTimeline } = require("../views/templates");
 const { auth } = require("../utils");
 const { getPostData } = require("../utils");
 const timelineRepository = require("../Models/timelineRepository");
-const bcrypt = require("bcrypt");
 const mime = require("mime");
-const jwt = require("jsonwebtoken");
 
 async function timelineController(req, res) {
   let user = auth(req, res);

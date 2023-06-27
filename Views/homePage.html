@@ -1,56 +1,58 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>Home Page</title>
-    <link rel="stylesheet" href="./public/css/homePageStyle.css">
-  </head>
-  <body onload="generateProfileCards();">
-    <div w3-include-html="header.html"></div>
-    <header class="box-shadow">
-      <div class="logo-container ">
-        <a href="homePage"><img src="./public/images/logo.png" alt="Logo"></a>
-      </div>
-      <div class="info-button-container">
-        <a href="AboutUs" class="button">About&Help</a>
 
-      </div>
-      <div class="dropdown">
-        <button class="dropbtn">Settings</button>
-        <div class="dropdown-content">
-          <a href="logout">Logout</a>
-          <a href="deleteAccount">Delete Account</a>
-        </div>
-      </div>
-    </header>
+<head>
+  <meta charset="utf-8">
+  <title>Home Page</title>
+  <link rel="stylesheet" href="./public/css/homePageStyle.css">
+</head>
 
-    <div class="container">
-      <button id="addProfileButton">Add Profile</button>
-      <div id="profileList"></div>
+<body onload="generateProfileCards();">
+  <div w3-include-html="header.html"></div>
+  <header class="box-shadow">
+    <div class="logo-container ">
+      <a href="homePage"><img src="./public/images/logo.png" alt="Logo"></a>
+    </div>
+    <div class="info-button-container">
+      <a href="AboutUs" class="button">About&Help</a>
 
-      <!-- The Modal -->
-      <div id="myModal" class="modal">
-
-        <!-- Modal content -->
-        <div class="modal-content">
-          <span class="close">&times;</span>
-          <form action="register" method="POST" id="modal-form">
-            <input type="text" id="name" name="name" placeholder="Name" required autocomplete="off">   
-            <input type="text" id="surname" name="surname" placeholder="Surname" required autocomplete="off">
-            <input type="date" id="birthdate" name="birthdate" placeholder="Birthdate" required autocomplete="off">
-              <select id="gender" name="gender">
-                <option value="male">Male</option>
-                <option value="female">Female</option>
-              </select>
-
-            <button onclick="addChildInDB();" type="button" id="addChild">Add Child</button>
-        </form>
-        </div>
-
+    </div>
+    <div class="dropdown">
+      <button class="dropbtn">Settings</button>
+      <div class="dropdown-content">
+        <a href="logout">Logout</a>
+        <a href="deleteAccount">Delete Account</a>
       </div>
     </div>
+  </header>
+
+  <div class="container">
+    <button class="myBtn" id="addProfileButton">Add Profile</button>
+    <div id="profileList"></div>
+
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+
+      <!-- Modal content -->
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <form action="register" method="POST" id="modal-form">
+          <input type="text" id="name" name="name" placeholder="First Name" required autocomplete="off">
+          <input type="text" id="surname" name="surname" placeholder="Last Name" required autocomplete="off">
+          <input type="date" id="birthdate" name="birthdate" placeholder="Birthdate" required autocomplete="off">
+          <select id="gender" name="gender">
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+          </select>
+
+          <button onclick="addChildInDB();" type="button" id="addChild">Add Child</button>
+        </form>
+      </div>
+    </div>
+
     <!-- Add an input element to handle file uploads -->
     <input type="file" id="imageUploadInput" style="display: none;">
     <script src="../public/js/homePage.js"></script>
-  </body>
+</body>
+
 </html>

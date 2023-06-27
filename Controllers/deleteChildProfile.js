@@ -1,4 +1,5 @@
 const { auth } = require('../utils');
+const mime = require("mime");
 const childRepository = require("../Models/childRepository");
 require("dotenv").config();
 

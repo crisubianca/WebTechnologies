@@ -1,5 +1,3 @@
-// Sample profile data
-// let profiles = [{ id: 1, name: "{Kids Name}", image: "logo.png" }];
 
 function deleteChildProfile(childId) {
   fetch(`./deleteChildProfile?child_id=${childId}`, {
@@ -24,7 +22,6 @@ function deleteChildProfile(childId) {
 async function getChildrenData() {
   let profiles = await fetch("./showProfiles");
   profiles = await profiles.json();
-  // console.log(jsonData);
   console.log("profiles", profiles);
   return profiles;
 }
@@ -44,22 +41,19 @@ async function generateProfileCards() {
       <img src="${profile.image}" alt="${profile.name}">
       <h3>${profile.first_name}</h3>
       <button class="delete-profile-button" data-profile-id="${profile.child_id}">Delete</button>
-      <button class="upload-image-button" data-profile-id="${profile.child_id}">Upload Image</button>
+      <button class="edit-name-button" data-profile-id="${profile.child_id}">Edit Name</button>
     `;
 
-    // Add event listener for profile card click
     profileCard.addEventListener("click", () => {
       redirectToProfilePage(profile.child_id);
     });
     
-    // Function to redirect to profile-specific HTML page
     function redirectToProfilePage(child_id) {
       
       console.log("data-profile-id:", child_id);
       window.location.href = `./fsSchedule?child_id=${child_id}`;
     }
 
-    // Add event listener for delete profile button
     const deleteButton = profileCard.querySelector(".delete-profile-button");
     deleteButton.addEventListener("click", (event) => {
       event.stopPropagation();
@@ -68,58 +62,9 @@ async function generateProfileCards() {
       deleteChildProfile(profileId);
     });
 
-    // Add event listener for upload image button
-    // const uploadButton = profileCard.querySelector(".upload-image-button");
-    // uploadButton.addEventListener("click", (event) => {
-    //   event.stopPropagation();
-    //   const profileId = parseInt(uploadButton.dataset.profileId);
-    //   handleImageUpload(profileId);
-    // });
-
     profileList.appendChild(profileCard);
   });
 }
-
-// Function to delete a profile
-function deleteProfile() {
-  generateProfileCards();
-}
-
-// Function to handle image upload
-function handleImageUpload(profileId) {
-  const input = document.getElementById("imageUploadInput");
-  input.click();
-
-  input.addEventListener("change", (event) => {
-    const file = event.target.files[0];
-    const reader = new FileReader();
-
-    reader.onload = (e) => {
-      const imageSrc = e.target.result;
-      updateProfileImage(profileId, imageSrc);
-    };
-
-    reader.readAsDataURL(file);
-  });
-}
-
-// Function to update profile image
-function updateProfileImage(profileId, imageSrc) {
-  const profile = profiles.find((profile) => profile.id === profileId);
-  if (profile) {
-    profile.image = imageSrc;
-    generateProfileCards();
-  }
-}
-
-// Function to handle add profile button click
-// document.getElementById('addProfileButton').addEventListener('click', () => {
-//   const profileName = prompt('Enter profile name:');
-//   const profileId = profiles.length + 1;
-//   const newProfile = { id: profileId, name: profileName, image: '' };
-//   profiles.push(newProfile);
-//   generateProfileCards();
-// });
 
 // Get the modal
 var modal = document.getElementById("myModal");
@@ -154,37 +99,37 @@ formInputs = [firstname, surname, birthdate, gender];
 
 const isRequired = (value) => (value === "" ? false : true);
 
-firstname.input.addEventListener("input", () => {
-  if (isRequired(firstname.input.value.trim())) {
-    firstname.input.style.outlineColor = "hsl(145, 63%, 40%)";
+firstname.addEventListener("input", () => {
+  if (isRequired(firstname.value.trim())) {
+    firstname.style.outlineColor = "hsl(145, 63%, 40%)";
   } else {
-    firstname.input.style.outlineColor = "hsl(0, 100%, 34%)";
+    firstname.style.outlineColor = "hsl(0, 100%, 34%)";
   }
 });
 
-surname.input.addEventListener("input", () => {
-  if (isRequired(surname.input.value.trim())) {
-    surname.input.style.outlineColor = "hsl(145, 63%, 40%)";
+surname.addEventListener("input", () => {
+  if (isRequired(surname.value.trim())) {
+    surname.style.outlineColor = "hsl(145, 63%, 40%)";
   } else {
-    surname.input.style.outlineColor = "hsl(0, 100%, 34%)";
+    surname.style.outlineColor = "hsl(0, 100%, 34%)";
   }
 });
 
-birthdate.input.addEventListener("input", (event) => {
+birthdate.addEventListener("input", (event) => {
   const selectedDate = event.target.value;
   if (isRequired(selectedDate)) {
-    birthdate.input.style.outlineColor = "hsl(145, 63%, 40%)";
+    birthdate.style.outlineColor = "hsl(145, 63%, 40%)";
   } else {
-    birthdate.input.style.outlineColor = "hsl(0, 100%, 34%)";
+    birthdate.style.outlineColor = "hsl(0, 100%, 34%)";
   }
 });
 
-gender.input.addEventListener("change", (event) => {
+gender.addEventListener("change", (event) => {
   const selectedGender = event.target.value;
   if (isRequired(selectedGender)) {
-    gender.input.style.outlineColor = "hsl(145, 63%, 40%)";
+    gender.style.outlineColor = "hsl(145, 63%, 40%)";
   } else {
-    gender.input.style.outlineColor = "hsl(0, 100%, 34%)";
+    gender.style.outlineColor = "hsl(0, 100%, 34%)";
   }
 });
 
@@ -221,5 +166,4 @@ function addChildInDB() {
   document.getElementById("modal-form").reset();
   generateProfileCards();
 }
-// Generate profile cards on page load
-generateProfileCards();
+

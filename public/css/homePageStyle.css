@@ -97,28 +97,6 @@ html {
     background-color: #FFC5A1;
   }
   
-  /* .info-button-container:hover .info-popup {
-    display: block;
-  } */
-  
-  /* .close-button {
-    font-size: 16px;
-    font-weight: bold;
-    color: #FCF9EA;
-    background-color: #BADFDB;
-    border: none;
-    border-radius: 5px;
-    padding: 10px 20px;
-    margin-top: 10px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .close-button:hover {
-    background-color: #FFC5A1;
-  } */
-  
-  
   .dropbtn {
     font-size: 16px;
     font-weight: bold;
@@ -227,9 +205,8 @@ html {
 }
 
 
-
 .delete-profile-button,
-.upload-image-button {
+.edit-name-button {
   font-size: 16px;
   font-weight: bold;
   color: #FCF9EA;
@@ -244,7 +221,7 @@ html {
 
 
 .delete-profile-button:hover,
-.upload-image-button:hover {
+.edit-name-button:hover {
   background-color: #FFC5A1;
 }
   

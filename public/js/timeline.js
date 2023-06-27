@@ -49,28 +49,28 @@ formInputs = [date, timelineInfo, timelineTitle];
 
 const isRequired = (value) => (value === "" ? false : true);
 
-date.input.addEventListener("input", (event) => {
+date.addEventListener("input", (event) => {
   const selectedDate = event.target.value;
   if (isRequired(selectedDate)) {
-    date.input.style.outlineColor = "hsl(145, 63%, 40%)";
+    date.style.outlineColor = "hsl(145, 63%, 40%)";
   } else {
-    date.input.style.outlineColor = "hsl(0, 100%, 34%)";
+    date.style.outlineColor = "hsl(0, 100%, 34%)";
   }
 });
 
-timelineTitle.input.addEventListener("input", () => {
-  if (isRequired(timelineTitle.input.value.trim())) {
-    timelineTitle.input.style.outlineColor = "hsl(145, 63%, 40%)";
+timelineTitle.addEventListener("input", () => {
+  if (isRequired(timelineTitle.value.trim())) {
+    timelineTitle.style.outlineColor = "hsl(145, 63%, 40%)";
   } else {
     timelineTitle.input.style.outlineColor = "hsl(0, 100%, 34%)";
   }
 });
 
-timelineInfo.input.addEventListener("input", () => {
-  if (isRequired(timelineInfo.input.value.trim())) {
-    timelineInfo.input.style.outlineColor = "hsl(145, 63%, 40%)";
+timelineInfo.addEventListener("input", () => {
+  if (isRequired(timelineInfo.value.trim())) {
+    timelineInfo.style.outlineColor = "hsl(145, 63%, 40%)";
   } else {
-    timelineInfo.input.style.outlineColor = "hsl(0, 100%, 34%)";
+    timelineInfo.style.outlineColor = "hsl(0, 100%, 34%)";
   }
 });
 
@@ -106,9 +106,9 @@ function addTimelineEntryInDB() {
     });
   modal.style.display = "none";
 
-  document.getElementById("timelineModal").reset();
-//   location.reload();
-  addDataToTimeline()();
+  document.getElementById("timelineModal").reset;
+  location.reload();
+  // addDataToTimeline()();
 }
 
 function convertDateForShowing(date){
@@ -193,23 +193,5 @@ async function addDataToTimeline() {
             <p>${data.timeline_info}</p>
           </div>`;
     timeline.appendChild(container);
-
-    // <div class="container left">
-    //   <div class="date">26 Sep</div>
-    //   <div class="content">
-    //     <h2>Dad's birthday</h2>
-    //     <video width="160" height="120" controls>
-    //         <source src="video2.mp4" type="video/mp4">
-    //         Your browser does not support the video tag.
-    //     </video>
-    //   </div>
-    // </div>
-    // <div class="container right">
-    //   <div class="date">25 Oct</div>
-    //   <div class="content">
-    //     <h2>1st year birthday celebration</h2>
-    //     <img width="160" height="120" src="image3.jpg" alt="My Image">
-    //   </div>
-    // </div>
   });
 }

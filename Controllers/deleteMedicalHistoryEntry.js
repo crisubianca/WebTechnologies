@@ -1,4 +1,5 @@
 const { auth } = require('../utils');
+const mime = require("mime");
 const medicalHistoryRepository = require("../Models/medicalHistoryRepository");
 require("dotenv").config();
 

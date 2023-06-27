@@ -64,10 +64,39 @@ function getAllByChildId(child_id) {
     })
 }
 
+function deleteEatByChildId(child_id) {
+    let queryText = "DELETE FROM feeding_schedule WHERE child_id = ?";
+    return new Promise((resolve, reject) => {
+        database.promise().query(queryText, [child_id])
+        .then((results) => {
+            resolve(results);
+        })
+        .catch((error) => {
+            reject(error);
+        });
+    })
+}
+
+function deleteSleepByChildId(child_id) {
+    let queryText = "DELETE FROM sleeping_schedule WHERE child_id = ?";
+    return new Promise((resolve, reject) => {
+        database.promise().query(queryText, [child_id])
+        .then((results) => {
+            resolve(results);
+        })
+        .catch((error) => {
+            reject(error);
+        });
+    })
+}
+
+
 module.exports = {
     createSleep,
     createEat,
     getSleepByChildId,
     getFoodByChildId,
     getAllByChildId,
+    deleteEatByChildId,
+    deleteSleepByChildId
 }

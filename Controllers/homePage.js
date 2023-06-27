@@ -3,9 +3,7 @@ const { auth } = require("../utils");
 const { getPostData } = require("../utils");
 const childRepository = require("../Models/childRepository");
 const userRepository = require("../Models/userRepository");
-const bcrypt = require("bcrypt");
 const mime = require("mime");
-const jwt = require("jsonwebtoken");
 
 async function homePageController(req, res) {
   let user = auth(req, res);

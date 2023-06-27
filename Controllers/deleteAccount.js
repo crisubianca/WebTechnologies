@@ -2,9 +2,6 @@ const { auth } = require('../utils');
 const userRepository = require("../Models/userRepository");
 const childRepository = require("../Models/childRepository");
 const { viewStartPage} = require("../views/templates.js");
-// const crypto = require("crypto");
-// const FormData = require('form-data');
-// const fetch = require('node-fetch');
 require("dotenv").config();
 
 function deleteAccountController(req, res) {

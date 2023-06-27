@@ -2,10 +2,7 @@ const { viewMedicalHistory } = require("../views/templates");
 const { auth } = require("../utils");
 const { getPostData } = require("../utils");
 const medicalHistoryRepository = require("../Models/medicalHistoryRepository");
-const userRepository = require("../Models/userRepository");
-const bcrypt = require("bcrypt");
 const mime = require("mime");
-const jwt = require("jsonwebtoken");
 
 async function medicalHistoryController(req, res) {
   let user = auth(req, res);

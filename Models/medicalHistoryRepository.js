@@ -39,8 +39,22 @@ function deleteById(id){
     })
 }
 
+function deleteByChildId(child_id) {
+    let queryText = "DELETE FROM medical_history WHERE child_id = ?";
+    return new Promise((resolve, reject) => {
+        database.promise().query(queryText, [child_id])
+        .then((results) => {
+            resolve(results);
+        })
+        .catch((error) => {
+            reject(error);
+        });
+    })
+}
+
 module.exports = {
     create,
     getAllByChildId,
-    deleteById
+    deleteById,
+    deleteByChildId
 }

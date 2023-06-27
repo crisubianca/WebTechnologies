@@ -29,7 +29,7 @@ CREATE TABLE timeline(
     timeline_title VARCHAR(50) NOT NULL,
     timeline_info VARCHAR(512) NOT NULL,
     child_id INT NOT NULL,
-    FOREIGN KEY (child_id) REFERENCES children(child_id));
+    FOREIGN KEY (child_id) REFERENCES children(child_id) ON DELETE CASCADE);
 
 CREATE TABLE feeding_schedule(
     id INT(11) NOT NULL AUTO_INCREMENT,
@@ -38,7 +38,7 @@ CREATE TABLE feeding_schedule(
     time TIME NOT NULL,
     information TEXT NOT NULL,
     PRIMARY KEY (id),
-    FOREIGN KEY (child_id) REFERENCES children(child_id));
+    FOREIGN KEY (child_id) REFERENCES children(child_id) ON DELETE CASCADE);
 
 CREATE TABLE sleeping_schedule(
     id INT(11) NOT NULL AUTO_INCREMENT,
@@ -47,7 +47,7 @@ CREATE TABLE sleeping_schedule(
     time TIME NOT NULL,
     information TEXT NOT NULL,
     PRIMARY KEY (id),
-    FOREIGN KEY (child_id) REFERENCES children(child_id));
+    FOREIGN KEY (child_id) REFERENCES children(child_id) ON DELETE CASCADE);
 
 CREATE TABLE medical_history(
     id INT(11) NOT NULL AUTO_INCREMENT,
@@ -59,4 +59,4 @@ CREATE TABLE medical_history(
     medical_procedure VARCHAR(128) NOT NULL,
     additional_information TEXT,
     PRIMARY KEY (id),
-    FOREIGN KEY (child_id) REFERENCES children(child_id));
+    FOREIGN KEY (child_id) REFERENCES children(child_id) ON DELETE CASCADE);

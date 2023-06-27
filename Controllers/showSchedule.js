@@ -1,10 +1,6 @@
-const { viewHomePage } = require("../views/templates");
 const { auth } = require("../utils");
-const { getPostData } = require("../utils");
 const scheduleRepository = require("../Models/scheduleRepository");
-const bcrypt = require("bcrypt");
 const mime = require("mime");
-const jwt = require("jsonwebtoken");
 
 async function showScheduleController(req, res) {
     let user = auth(req, res);
